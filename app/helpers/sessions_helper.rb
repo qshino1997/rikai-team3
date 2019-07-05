@@ -5,7 +5,6 @@ module SessionsHelper
 
     def current_user?(user)
         user == current_user
-        redirect_to(root_url) unless current_user?(@user)
     end
 
     def current_user

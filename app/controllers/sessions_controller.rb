@@ -4,10 +4,14 @@ class SessionsController < ApplicationController
     if
       user = User.where(:email => params[:session][:email]).first
       if user && user.authenticate(params[:session][:password])
-        flash[:success] = 'Đăng nhập thành công'
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        render 'static_pages/home'
+        redirect_to user
+        if current_user.admin? 
+        flash[:success] = 'Đăng nhập admin'
+        else current_user?(user)
+        flash[:success] = 'Đăng nhập người dùng'
+        end
       else
         flash[:danger] = 'Mật khẩu không đúng'
         render 'login'
@@ -19,7 +23,6 @@ class SessionsController < ApplicationController
   end
 
   def login
-    @user = User.find(params[:id])
   end  
 
   def logout

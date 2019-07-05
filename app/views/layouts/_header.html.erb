@@ -9,13 +9,17 @@
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
-      <%= link_to "Trang chủ", root_path , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%>
-    <% if logged_in? %>
-        <%= link_to "Đăng xuất", logout_path, method: :delete, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>  
-<!--       <p class="w3-bar-item w3-button" style="color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em"> <%= @user.email %>  </p>
--->    <% else %>
+     <div> <%= link_to "Trang chủ", '#home' , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%>
+      <% if logged_in? %>
+        <%= link_to "Đăng xuất", logout_path, method: :delete, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>            
+        <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.2em; font-family: Times New Roman; font-weight: bold">
+        Chào <%= @user.hoten %>
+        </a>
+       
+   <% else %>
         <%= link_to "Đăng nhập", login_path, class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold;font-family: Times New Roman; font-size:1.2em"%>
     <% end %>
+    </div>
     </a>
   </div>
 </div>
