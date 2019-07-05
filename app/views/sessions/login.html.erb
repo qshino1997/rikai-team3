@@ -1,0 +1,26 @@
+<% provide(:title, "Log in") %>
+<div style="text-align: center; margin: 50px">
+<p style="text-align: center">
+<h3 class="w3-center">Đăng nhập</h3>
+<%= form_for(:session, url: login_path) do |form| %>
+<div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+</div>
+<div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+</div>
+<div>
+<%= form.label :remember_me, class: "checkbox inline" do %>
+  <%= form.check_box :remember_me %>
+  <span>Ghi nhớ đăng nhập</span>
+<% end %>
+</div>
+      <%= form.submit "Đăng nhập", class: "btn btn-primary"%>
+    <% end %>
+</p>
+</div>
+    <p style="color: blue ; font-size: 1.5em ; text-align: center">Chưa có tải khoản? <%= link_to "Đăng ký ngay", signup_path, style: "color: blue ; font-size:1em" %></p>
+  </div>
+</div>  

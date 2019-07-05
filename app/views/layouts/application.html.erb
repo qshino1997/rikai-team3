@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QLTV</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class = "body-x">
+  <%= render 'layouts/header' %>
+   <div class="container" style="text-align: -webkit-center">
+    <% flash.each do |message_type, message| %>
+        <div style="text-align: center; width: 50%" class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
+      <%= yield %>
+  <%= render 'layouts/footer' %>
+  </body>
+</html>
