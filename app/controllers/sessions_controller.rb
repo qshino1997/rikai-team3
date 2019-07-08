@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def logining  
-    respond_to do |format|
     if
       user = User.where(:email => params[:session][:email]).first
       if user && user.authenticate(params[:session][:password])
@@ -19,11 +18,10 @@ class SessionsController < ApplicationController
         render 'login'
       end
     else
-        flash[:danger] = 'Địa chỉ email không đúng'
+        flash.now[:danger] = 'Địa chỉ email không đúng'
         render 'login'
     end
   end
-
   def login
   end  
 
