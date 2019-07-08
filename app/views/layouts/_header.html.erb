@@ -12,10 +12,23 @@
      <div> <%= link_to "Trang chủ", root_url , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%>
       <% if logged_in? %>
         <%= link_to "Đăng xuất", logout_path, method: :delete, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>            
+        <% unless current_user.admin %>
+        <div class="w3-bar-item w3-button" >
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em ">
+                      Thông tin cá nhân <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" style="margin-left: 125px;">
+              <li><%= link_to 'Xem thông tin cá nhân' , current_user, style:"color:black; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></li>
+              <li><%= link_to 'Cập nhập thông tin cá nhân' , edit_user_path(current_user) , style:"color:black; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%></li>
+              </ul>
+        </div>
+        <% end %>
         <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.2em; font-family: Times New Roman; font-weight: bold">
         Chào <%= current_user.hoten %>
         </a>
-       
+       <% if current_user.admin %>
+       <%= link_to "Quản trị", quantri_path, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>
+        <% end %>
    <% else %>
         <%= link_to "Đăng nhập", login_path, class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold;font-family: Times New Roman; font-size:1.2em"%>
     <% end %>

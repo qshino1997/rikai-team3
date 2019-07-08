@@ -1,18 +1,18 @@
 class SessionsController < ApplicationController
 
   def logining  
+    respond_to do |format|
     if
       user = User.where(:email => params[:session][:email]).first
       if user && user.authenticate(params[:session][:password])
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_to user
         if current_user.admin? 
         flash[:success] = 'Đăng nhập admin'
         redirect_to user
-        else current_user?(user)
+      else current_user?(user)
         flash[:success] = 'Đăng nhập người dùng'
-        redirect_to user
+        render 'static_pages/home'
         end
       else
         flash[:danger] = 'Mật khẩu không đúng'
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   end  
 
   def logout
-    flash[:success] = 'Đăng xuất thành công'
+    flash[:danger] = 'Đã đăng xuất'
     log_out if logged_in?
     redirect_to root_url
   end

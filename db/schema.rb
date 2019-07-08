@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_07_03_030251) do
     t.string "thuongtru"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "namsinh_at"
+    t.date "namsinh_at"
     t.boolean "admin", default: false
     t.string "password_digest"
     t.string "remember_digest"

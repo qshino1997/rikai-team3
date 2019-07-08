@@ -1,10 +1,23 @@
-<a class="w3-bar-item w3-button" 
-style="color:yellow; margin: auto">  
-<p style = "font-size: 1.2em; font-family: Times New Roman; font-weight: bold; margin: auto " >
-Chào <%= @user.hoten %>
-</p>
+<h3 class="w3-center">Thông tin sinh viên</h3>
+<form style=" margin-left: 5%">
+<div class="row">
+    <section class="user_info">
+      <h1 style="font-family: 'Times New Roman', Times, serif;
+  color: black;
+  font-size: 1.5em;
+  text-align: left">
+       <li> Tên: <%= @user.hoten %> </li>
+       <li> Địa chỉ email: <%= @user.email %> </li>
+       <li> Số điện thoại: <%= @user.sdt %> </li>
+       <li> Địa chỉ: <%= @user.thuongtru %> </li>
+       <li> Năm sinh: <%= @user.namsinh_at %> </li>
+      </h1>
+</div>
+</form>
+<a>
  <%= Date.current  %> <br>
 </a>
+
 
 
 

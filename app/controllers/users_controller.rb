@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :show]
+  before_action :logged_in_user, only: [:edit, :update, :show, :adminedit]
   before_action :correct_user,   only: [:edit, :update]
-
+  before_action :check_admin,    only: [:adminedit, :quantri]
   # GET /users
   # GET /users.json
+  
   def index
     @users = User.all
   end
@@ -21,7 +22,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
 
+  # GET /users/1/adminedit
+  def adminedit
   end
 
   # POST /users
@@ -40,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Sửa thông tin thành công' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -49,6 +53,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def quantri
+  end
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -72,11 +78,16 @@ class UsersController < ApplicationController
 
     def logged_in_user
       unless logged_in?
-        
         flash[:danger] = "Vui lòng đăng nhập để sử dụng chức năng này"
         redirect_to login_url
       end
     end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end
+    end    
 
     def correct_user
       @user = User.find(params[:id])
