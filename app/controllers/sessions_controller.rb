@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
         redirect_to user
         if current_user.admin? 
         flash[:success] = 'Đăng nhập admin'
+        redirect_to user
         else current_user?(user)
         flash[:success] = 'Đăng nhập người dùng'
+        redirect_to user
         end
       else
         flash[:danger] = 'Mật khẩu không đúng'
