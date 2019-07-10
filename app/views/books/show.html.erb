@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tieude:</strong>
+  <%= @book.tieude %>
+</p>
+
+<p>
+  <strong>Tacgia:</strong>
+  <%= @book.tacgia %>
+</p>
+
+<p>
+  <strong>Namxuatbang:</strong>
+  <%= @book.namxuatbang %>
+</p>
+
+<p>
+  <strong>Mota:</strong>
+  <%= @book.mota %>
+</p>
+
+<p>
+  <strong>Gia:</strong>
+  <%= @book.gia %>
+</p>
+
+<p>
+  <strong>Catogary:</strong>
+  <%= @book.catogary_id %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

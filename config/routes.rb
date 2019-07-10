@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  resources :indentifies
+  resources :books
+  get  '/themmoi',  to: 'books#new'
+
+  resources :borrow_details
+  get  '/nhandangmoi',  to: 'indentifies#new'
+
+  resources :borrows
+  resources :catogaries
+  get  '/loaimoi',  to: 'catogaries#new'
+
   get 'sessions/new'
   get  '/signup',  to: 'users#new'
   post  '/signup', to: 'users#create'

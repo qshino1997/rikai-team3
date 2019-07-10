@@ -1,0 +1,26 @@
+<%= form_with(model: indentify, local: true) do |form| %>
+  <% if indentify.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(indentify.errors.count, "error") %> prohibited this indentify from being saved:</h2>
+
+      <ul>
+      <% indentify.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :indentify_code %>
+    <%= form.text_field :indentify_code %>
+  </div>
+
+  <div class="field">
+  <%= form.collection_select :book_id, @books, :id, :tieude %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
