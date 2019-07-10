@@ -1,0 +1,47 @@
+<%= form_with(model: book, local: true) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tieude, "Tên sách" %>
+    <%= form.text_field :tieude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tacgia, "Tên tác giả" %>
+    <%= form.text_field :tacgia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :namxuatbang ,"Năm xuất bản "%>
+    <%= form.date_select :namxuatbang %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mota, "Mô tả về  sách" %>
+    <%= form.text_field :mota %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gia, "Giá " %>
+    <%= form.text_field :gia %>
+  </div>
+  <div class="field">
+  <%= form.label :catogary_id, "Chọn thể loại" %>
+  <%= form.collection_select :catogary_id, @catogaries, :id, :tenloai %>
+</div>
+ 
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

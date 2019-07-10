@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Borrow Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Borrow</th>
+      <th>Thoigianmuon</th>
+      <th>Thoigiantra</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @borrow_details.each do |borrow_detail| %>
+      <tr>
+        <td><%= borrow_detail.borrow_id %></td>
+        <td><%= borrow_detail.thoigianmuon %></td>
+        <td><%= borrow_detail.thoigiantra %></td>
+        <td><%= link_to 'Show', borrow_detail %></td>
+        <td><%= link_to 'Edit', edit_borrow_detail_path(borrow_detail) %></td>
+        <td><%= link_to 'Destroy', borrow_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Borrow Detail', new_borrow_detail_path %>
