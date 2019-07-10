@@ -1,0 +1,22 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <%= render 'shared/thongbaoloi', object: form.object %>
+
+  <div class="field">
+    <%= form.label :"Email" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field" >
+    <%= form.label :"Nhập mã sv" %>
+    <%= form.text_field :masv %>
+  </div>
+
+  <div class="field">
+    <%= form.label :"Mật khẩu" %>
+    <%= form.password_field :password %>
+  </div> 
+
+  <div class="field">
+    <%= form.submit :"Đăng ký" %>
+  </div> 
+<% end %>

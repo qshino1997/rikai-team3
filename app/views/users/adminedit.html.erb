@@ -1,0 +1,36 @@
+<h3 class="w3-center">Sửa thông tin nguời dùng</h3>
+
+<%= form_with(model: @user, local: true) do |form| %>
+
+    <div class="field">
+    <%= form.label :"Họ Tên" %>
+    <%= form.text_field :hoten %>
+    </div>
+
+    <div class="field">
+    <%= form.label :"Mật khẩu" %>
+    <%= form.password_field :password %>
+    </div>
+
+    <div class="field">
+    <%= form.label :"Số điện thoại" %>
+    <%= form.text_field :sdt %>
+    </div>
+    
+    <div class="field">
+    <%= form.label :"Địa chỉ" %>
+    <%= form.text_field :thuongtru %>
+    </div>
+
+    <div class="field">
+    <%= form.label :"Năm sinh" %>
+    <%= form.text_field :namsinh_at %>
+    </div>
+
+  <div class="field">
+    <%= form.submit :"Sửa" %>
+  </div> 
+<% end %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>

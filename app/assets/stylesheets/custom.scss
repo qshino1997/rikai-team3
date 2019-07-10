@@ -1,0 +1,162 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+    background-color: #fff;
+    color: #333;
+    margin: 33px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  
+  p, ol, ul, td {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  
+  pre {
+    background-color: #eee;
+    padding: 10px;
+    font-size: 11px;
+  }
+  
+  a {
+    color: #000;
+  
+    &:visited {
+      color: #666;
+    }
+  
+    &:hover {
+      color: #fff;
+      background-color: #000;
+    }
+  }
+  
+  th {
+    padding-bottom: 5px;
+  }
+  
+  td {
+    padding: 0 5px 7px;
+  }
+  
+  div {
+    &.field, &.actions {
+      margin-bottom: 10px;
+    }
+  }
+  
+  #notice {
+    color: green;
+  }
+  
+  .field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+  }
+form{
+    text-align: -webkit-center;
+    list-style: none;
+  }
+ 
+  
+  #error_explanation {
+    width: 450px;
+    border: 2px solid red;
+    padding: 7px 7px 0;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+  
+    h2 {
+      text-align: left;
+      font-weight: bold;
+      padding: 5px 5px 5px 15px;
+      font-size: 12px;
+      margin: -7px -7px 0;
+      background-color: #c00;
+      color: #fff;
+    }
+  
+    ul li {
+      font-size: 12px;
+      list-style: none;
+    }
+  }
+  
+  label {
+    display: block;
+  }
+  
+  /* INDEX */
+  
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+  body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+  }
+  
+  /* Create a Parallax Effect */
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* First image (Logo. Full height) */
+  .bgimg-1 {
+    background-image: asset-url("parallax1.jpg");
+    min-height: 100%;
+  }
+  
+  .bgimg-2 {
+    background-image: asset-url("parallax2.jpg");
+    min-height: 400px;
+  }
+  
+  /* Third image (Contact) */
+  .bgimg-3 {
+    background-image: asset-url("parallax3.jpg");
+    min-height: 400px;
+  }
+  
+  .w3-wide {letter-spacing: 10px;}
+  .w3-hover-opacity {cursor: pointer;}
+  
+  @media only screen and (max-device-width: 1600px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+      background-attachment: scroll;
+      min-height: 400px;
+    }
+  }
+   /* loi */ 
+  #error_explanation {
+    color: red;
+    text-align: -webkit-center;
+    ul {
+      color: red;
+      margin: 0 0 30px 0;
+    }
+  }
+  
+  .field_with_errors {
+    .form-control {
+      color: white;
+    }
+  }
+
+  .user_info {
+    list-style: none;
+    border : black
+    li {
+      margin-left: 40px;
+      overflow: hidden;
+      padding: 10px 0;
+      border-bottom: 1px solid $gray-lighter;
+    }
+  }
