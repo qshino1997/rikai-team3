@@ -1,24 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<h3 class="w3-center">Danh sách người đọc đã đăng ký</h3>
 
-<table>
+<table class="tablest">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
+      <th >Tên</th>
+      <th >Địa chỉ mail</th>
+      <th >Mã số </th>
+      <th >Lớp</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="tablest">
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.hoten %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td ><%= user.hoten %></td>
+        <td ><%= user.email %></td>
+        <td ><%= user.masv %></td>
+        <td ><%= user.lop %></td>
+        <td><%= link_to 'Thông tin', user %></td>
+        <td ><%= link_to 'Sửa', admin_edit_user_path(current_user) %></td>
+        <td><%= link_to 'Xóa', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'Thêm người dùng', new_user_path %>

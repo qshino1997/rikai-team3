@@ -3,17 +3,12 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   post  '/signup', to: 'users#create'
   get  '/index',  to: 'users#index' , as: :index
-  get 'quantri',   to: 'users#quantri', as: :quantri
   get 'static_pages/home'
   get 'static_pages/help'
   get    '/login',   to: 'sessions#login' 
   post   '/login',   to: 'sessions#logining'
-  delete '/logout',  to: 'sessions#logout'
-  get  '/users/:id/adminedit',  to:'users#adminedit', as: :adminedit_user  
-  resources :users
+  delete '/logout',  to: 'sessions#logout'  
   root 'static_pages#home'
-
-  namespace :admin do
-    resources :users, only: [:adminedit, :quantri]
-  end
+  get  '/users/:id/admin_edit',  to:'users#admin_edit', as: :admin_edit_user
+  resources :users
 end

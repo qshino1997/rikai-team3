@@ -1,19 +1,35 @@
 <h3 class="w3-center">Thông tin sinh viên</h3>
-<form style=" margin-left: 5%">
-<div class="row">
-    <section class="user_info">
-      <h1 style="font-family: 'Times New Roman', Times, serif;
-  color: black;
-  font-size: 1.5em;
-  text-align: left">
-       <li> Tên: <%= @user.hoten %> </li>
-       <li> Địa chỉ email: <%= @user.email %> </li>
-       <li> Số điện thoại: <%= @user.sdt %> </li>
-       <li> Địa chỉ: <%= @user.thuongtru %> </li>
-       <li> Năm sinh: <%= @user.namsinh_at %> </li>
-      </h1>
-</div>
-</form>
+<table class="tablest">
+  <thead>
+    <tr>
+      <th >Tên</th>
+      <th >Địa chỉ mail</th>
+      <th >Số điện thoại</th>
+      <th >Mã số </th>
+      <th >Lớp</th>
+      <th >Địa chỉ </th>
+      <th >Năm sinh</th>
+      <% unless current_user.admin %>
+      <th colspan="2"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody class="tablest">
+      <tr>
+        <td ><%= @user.hoten %></td>
+        <td ><%= @user.email %></td>
+        <td ><%= @user.sdt %></td>
+        <td ><%= @user.masv %></td>
+        <td ><%= @user.lop %></td>
+        <td ><%= @user.thuongtru %></td>
+        <td ><%= @user.namsinh_at %></td>
+        <% unless current_user.admin %>
+        <td ><button><%= link_to 'Cập nhập thông tin', edit_user_path(current_user) %></button></td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
 <a>
  <%= Date.current  %> <br>
 </a>
