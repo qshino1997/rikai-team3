@@ -1,0 +1,32 @@
+<%= form_with(model: borrow_detail, local: true) do |form| %>
+  <% if borrow_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(borrow_detail.errors.count, "error") %> prohibited this borrow_detail from being saved:</h2>
+
+      <ul>
+      <% borrow_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :borrow_id %>
+    <%= form.number_field :borrow_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thoigianmuon %>
+    <%= form.datetime_select :thoigianmuon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thoigiantra %>
+    <%= form.datetime_select :thoigiantra %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
