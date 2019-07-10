@@ -2,18 +2,28 @@
   <%= render 'shared/thongbaoloi', object: form.object %>
 
   <div class="field">
-    <%= form.label :"Email" %>
+    <%= form.label :"Địa chỉ email" %>
     <%= form.text_field :email %>
   </div>
 
   <div class="field" >
-    <%= form.label :"Nhập mã sv" %>
+    <%= form.label :"Nhập tên" %>
+    <%= form.text_field :hoten %>
+  </div>
+
+  <div class="field" >
+    <%= form.label :"Nhập mã sinh viên" %>
     <%= form.text_field :masv %>
   </div>
 
   <div class="field">
     <%= form.label :"Mật khẩu" %>
     <%= form.password_field :password %>
+  </div>
+
+  <div class="field" >
+    <%= form.label :"Nhập lớp" %>
+    <%= form.text_field :lop %>
   </div> 
 
   <div class="field">

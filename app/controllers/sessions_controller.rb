@@ -7,14 +7,14 @@ class SessionsController < ApplicationController
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         if current_user.admin? 
-        flash[:success] = 'Đăng nhập admin'
-        redirect_to user
+        flash.now[:success] = 'Đăng nhập admin'
+        render 'static_pages/home'
       else current_user?(user)
-        flash[:success] = 'Đăng nhập người dùng'
+        flash.now[:success] = 'Đăng nhập người dùng'
         render 'static_pages/home'
         end
       else
-        flash[:danger] = 'Mật khẩu không đúng'
+        flash.now[:danger] = 'Mật khẩu không đúng'
         render 'login'
       end
     else

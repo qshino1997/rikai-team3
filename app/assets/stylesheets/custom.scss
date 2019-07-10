@@ -108,9 +108,13 @@ form{
     background-size: cover;
   }
   
+  #bg{
+    background-image: asset-url("anh2.jpg");
+    background-size: cover;
+  }
   /* First image (Logo. Full height) */
   .bgimg-1 {
-    background-image: asset-url("parallax1.jpg");
+    background-image: asset-url("anh1.jpg");
     min-height: 100%;
   }
   
@@ -160,3 +164,42 @@ form{
       border-bottom: 1px solid $gray-lighter;
     }
   }
+
+.tablest{
+  border:1px solid black;
+  text-align: center;
+  width: 100%;
+  th{
+        background-color: aqua;
+        border:1px solid black;
+        text-align: center;
+  }
+  td{
+    border:1px solid black;
+    text-align: center;
+  }
+}
+
+#menu1 ul{
+  list-style-type: none ;
+  background: #1f5688;
+  text-align: center;
+  li{
+    color: #f1f1f1;
+    display: inline-table;
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    position: relative; 
+    a{
+      color: #f1f1f1;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      :hover{
+        color : #333;
+      }
+    }
+  } 
+}
+
