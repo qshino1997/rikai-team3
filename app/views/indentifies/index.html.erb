@@ -7,6 +7,7 @@
     <tr>
       <th>Indentify code</th>
       <th>Book</th>
+      <th>Tac gia</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +16,9 @@
     <% @indentifies.each do |indentify| %>
       <tr>
         <td><%= indentify.indentify_code %></td>
-        <td><%= indentify.book_id %></td>
+        <td><%= indentify.tieude %></td>
+        <td><%= indentify.tacgia %></td>
+        <td><%= indentify.namxuatbang %></td>
         <td><%= link_to 'Show', indentify %></td>
         <td><%= link_to 'Edit', edit_indentify_path(indentify) %></td>
         <td><%= link_to 'Destroy', indentify, method: :delete, data: { confirm: 'Are you sure?' } %></td>
