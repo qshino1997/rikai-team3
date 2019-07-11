@@ -4,16 +4,18 @@
   <div class="row">
     <% @indentifies.each do |indentify| %>
         <div class="col-sm-3 infb">
-        <div>Mã sách : <%= indentify.indentify_code %></div>
-        <div>Tên sách : <%= indentify.tieude %></div>
-        <div>Tác giả : <%= indentify.tacgia %></div>
-        <div>Năm xuất bản : <%= indentify.namxuatbang %></div>
+        <div style = "text-align: center; color:black">Mã sách : <%= indentify.indentify_code %></div>
+        <div style = "text-align: center; color:black">link : <%= indentify.picture %></div>
+        <div style = "text-align: center; color:black">Loại sách: </div>
+        <div style = "text-align: center; color:black">Tên sách : <%= indentify.tieude %></div>
+        <div style = "text-align: center; color:black">Tác giả : <%= indentify.tacgia %></div>
+        <div style = "text-align: center; color:black">Năm xuất bản: </div> 
+        <div style = "text-align: center; color:black"><%= indentify.namxuatbang %></div>
         <div>Loại : <%= indentify.tenloai %></div>
-        <div><button class="muon" value = "<%= indentify.id%>">Mượn</button></div>
-        
+        <div style = "text-align: center; color:black"><button class="muon" value = "<%= indentify.id%>">Mượn</button>
+          </div>        
     </div>
     <% end %>
-   
     </div>
     <span> trang </span>
     <%= will_paginate %>

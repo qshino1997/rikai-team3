@@ -30,5 +30,9 @@
   <%= @book.catogary_id %>
 </p>
 
+<p>
+  <strong>HÌnh ảnh</strong>
+  <%= image_tag(@book.picture.url, width: '80%') if @book.picture? %>
+</p>
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

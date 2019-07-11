@@ -27,9 +27,8 @@
         <td ><%= book.tieude %></td>
         <td ><%= book.tacgia %></td>
         <td ><%= book.namxuatbang %></td>
-        <td ><%= catogary.tenloai %></td>
         <td><%= link_to 'Thông tin', book %></td>
-        <td ><%= link_to 'Sửa', edit_book_path((current_book)) %></td>
+        
         <td><%= link_to 'Xóa', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
