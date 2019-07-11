@@ -48,13 +48,13 @@ function toggleFunction() {
 }
 $(document).ready(function() {
     $(".muon").click(function() {
-        kq = $(this).val();
+        indentify_id = $(this).val();
         Rails.ajax({
-            url: "/muon",
+            url: "/borrows",
             type: "get",
-            data: "id=" + kq,
+            data: { borrow: { indentify_id: indentify_id }, borrow: { soluong: 3 } },
             success: function(data) {
-                alert(kq);
+                alert(indentify_id);
             },
             error: function(data) {}
         })
