@@ -11,6 +11,7 @@ class IndentifiesController < ApplicationController
 
   def index_user
      @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(page: params[:page])
+     @books = Book.all
   end
 
 
@@ -18,7 +19,8 @@ class IndentifiesController < ApplicationController
   # GET /indentifies/1.json
   def show
     @indentifies =Indentify.joins(:book).select("indentifies.*, books.*")
-    @books = Book.all
+    @book = Book.find(params[:id])
+    @identify = Indentify.find(params[:id])
   end
 
   # GET /indentifies/new
@@ -87,7 +89,7 @@ class IndentifiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def indentify_params
-      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id)
+      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id, :picture)
     end
 
     def check_admin

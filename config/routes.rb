@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   resources :books
   get  '/themmoi',  to: 'books#new'
-  get  '/books',  to: 'books#index'
-  get '/book/:id/show' , to: 'books#show' 
+  get  '/books',  to: 'books#index' 
   get 'books/:id/edit', to:'books#edit'
   resources :borrow_details
   get  '/nhandangmoi',  to: 'indentifies#new'
