@@ -5,7 +5,6 @@ class IndentifiesController < ApplicationController
   # GET /indentifies.json
   def index
     @indentifies =Indentify.joins(:book).select("indentifies.*, books.*")
-    
   end
 
   # GET /indentifies/1
