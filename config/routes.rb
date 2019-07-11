@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   resources :indentifies
+  get '/thongtinsach', to: 'indentifies#index'
   resources :books
   get  '/themmoi',  to: 'books#new'
 
   resources :borrow_details
   get  '/nhandangmoi',  to: 'indentifies#new'
+  get  '/sach',  to: 'indentifies#index_user'
 
   resources :borrows
+  get '/muon', to: 'borrows#new'
   resources :catogaries
   get  '/loaimoi',  to: 'catogaries#new'
 
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#login' 
   post   '/login',   to: 'sessions#logining'
   delete '/logout',  to: 'sessions#logout'  
+  # root 'indentifies#index'
   root 'static_pages#home'
   get  '/users/:id/admin_edit',  to:'users#admin_edit', as: :admin_edit_user
   resources :users
