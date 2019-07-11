@@ -1,13 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Indentify code:</strong>
-  <%= @indentify.indentify_code %>
-</p>
-
-<p>
-  <strong>Book:</strong>
-  <%= @indentify.book_id %>
+   <% @indentifies.each do |indentify| %>
+      <tr>
+        <td><%= indentify.indentify_code %></td>
+        <td><%= indentify.tieude %></td>
+        <td><%= indentify.tacgia %></td>
+        <td><%= indentify.namxuatbang %></td>
+        <% end %>
 </p>
 
 <%= link_to 'Edit', edit_indentify_path(@indentify) %> |

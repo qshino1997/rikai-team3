@@ -201,10 +201,14 @@ html {
         background-color: aqua;
         border: 1px solid black;
         text-align: center;
+        color : black;
+        font-size: 1em;
     }
     td {
         border: 1px solid black;
         text-align: center;
+        color : black;
+        font-size: 1em;
     }
 }
 
@@ -268,6 +272,7 @@ td {
 // button mượn
 .muon {
     width: 100%;
-    color: red;
+    color: black;
     background: #d9edf7;
+    margin-bottom: 10px;
 }
