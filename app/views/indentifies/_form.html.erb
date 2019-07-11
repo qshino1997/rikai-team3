@@ -19,7 +19,9 @@
   <div class="field">
   <%= form.collection_select :book_id, @books, :id, :tieude %>
   </div>
-
+  <div class="field">
+  <%= form.collection_select :catogary_id, @catogaries, :id, :tenloai %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -52,9 +52,9 @@ $(document).ready(function() {
         Rails.ajax({
             url: "/borrows",
             type: "get",
-            data: { borrow: { indentify_id: indentify_id }, borrow: { soluong: 3 } },
+            data: { borrow: { indentify_id: indentify_id, soluong: 3 } },
             success: function(data) {
-                alert(indentify_id);
+                location.reload();
             },
             error: function(data) {}
         })

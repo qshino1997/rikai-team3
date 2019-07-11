@@ -10,8 +10,7 @@ class IndentifiesController < ApplicationController
   end
 
   def index_user
-    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*,indentifies.id").paginate(page: params[:page])
-    @books= Book.all
+     @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(page: params[:page])
   end
 
 
@@ -26,6 +25,7 @@ class IndentifiesController < ApplicationController
   def new
     @indentify = Indentify.new
     @books = Book.all
+    @catogaries = Catogary.all
   end
 
 
@@ -33,6 +33,8 @@ class IndentifiesController < ApplicationController
   def edit
     @indentifies =Indentify.joins(:book).select("indentifies.*, books.*")
     @books = Book.all
+    @catogaries = Catogary.all
+
 
 
   end
@@ -85,7 +87,7 @@ class IndentifiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def indentify_params
-      params.require(:indentify).permit(:indentify_code, :book_id)
+      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id)
     end
 
     def check_admin
