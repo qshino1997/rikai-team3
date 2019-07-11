@@ -2,17 +2,14 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <div class="row">
-    <% @indentifies.each do |indentify| %>
+    <% @books.each do |book| %>
         <div class="col-sm-3 infb">
-        <div style = "text-align: center; color:black">Mã sách : <%= indentify.indentify_code %></div>
-        <div style = "text-align: center; color:black">link : <%= indentify.picture %></div>
-        <div style = "text-align: center; color:black">Loại sách: </div>
-        <div style = "text-align: center; color:black">Tên sách : <%= indentify.tieude %></div>
-        <div style = "text-align: center; color:black">Tác giả : <%= indentify.tacgia %></div>
+        <div style = "text-align: center; color:black"><%= image_tag(book.picture.url, width: '80%') if book.picture? %></div>
+        <div style = "text-align: center; color:black">Tên sách : <%= book.tieude %></div>
+        <div style = "text-align: center; color:black">Tác giả : <%= book.tacgia %></div>
         <div style = "text-align: center; color:black">Năm xuất bản: </div> 
-        <div style = "text-align: center; color:black"><%= indentify.namxuatbang %></div>
-        <div>Loại : <%= indentify.tenloai %></div>
-        <div style = "text-align: center; color:black"><button class="muon" value = "<%= indentify.id%>">Mượn</button>
+        <div style = "text-align: center; color:black"><%= book.namxuatbang %></div>
+        <div style = "text-align: center; color:black"><button class="muon" value = "<%= book.id%>">Mượn</button>
           </div>        
     </div>
     <% end %>
