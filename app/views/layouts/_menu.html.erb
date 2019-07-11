@@ -3,6 +3,7 @@
 <ul>
 <% if current_user.admin %> 
 <li><a><%= link_to 'Xem tất cả người dùng' , users_path %></a>
+<li><a><%= link_to 'Thông tin về sách' , thongtinsach_path %></a>
 <li><a><%= link_to 'Thêm sách' , themmoi_path %></a>
 <li><a><%= link_to 'Thể loại sách' , loaimoi_path %></a>
 <li><a><%= link_to 'Phân loại sách' , nhandangmoi_path %></a>
@@ -12,6 +13,8 @@
 <% end %>
 <% unless current_user.admin %> 
 <li><a><%= link_to 'Xem thông tin tài khoản' , current_user %></a></li>
+<li><a><%= link_to 'Sách hiện có' , thongtinsach_path %></a></li>
+<li><a><%= link_to 'Trang chủ' , sach_path %></a></li>
 <% end %>
 </ul>
 <% end %>

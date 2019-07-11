@@ -4,8 +4,14 @@ class IndentifiesController < ApplicationController
   # GET /indentifies
   # GET /indentifies.json
   def index
-    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*")
+    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*").paginate(page: params[:page])
+    
   end
+  def index_user
+     @indentifies =Indentify.joins(:book).select("indentifies.*, books.*,indentifies.id").paginate(page: params[:page])
+    
+  end
+
 
   # GET /indentifies/1
   # GET /indentifies/1.json
@@ -18,8 +24,13 @@ class IndentifiesController < ApplicationController
     @books = Book.all
   end
 
+
   # GET /indentifies/1/edit
   def edit
+    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*")
+    @books = Book.all
+
+
   end
 
   # POST /indentifies
