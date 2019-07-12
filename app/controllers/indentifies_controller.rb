@@ -5,11 +5,11 @@ class IndentifiesController < ApplicationController
   # GET /indentifies.json
   def index
     @indentifies =Indentify.joins(:book).select("indentifies.*, books.*").paginate(page: params[:page])
+
     
   end
   def index_user
      @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(page: params[:page])
-    
   end
 
 

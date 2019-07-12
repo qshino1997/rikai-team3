@@ -9,11 +9,14 @@
         <div>Tác giả : <%= indentify.tacgia %></div>
         <div>Năm xuất bản : <%= indentify.namxuatbang %></div>
         <div>Loại : <%= indentify.tenloai %></div>
-        <div><button class="muon" value = "<%= indentify.id%>">Mượn</button></div>
-        
+        <div><button class="muon" value = "<%= indentify.id%>" data-user-id="<%= session[:user_id]%>">Mượn</button></div>
+       
+             
     </div>
-    <% end %>
    
+
+    <% end %>
+    <div id="tam"></div>
     </div>
     <span> trang </span>
     <%= will_paginate %>

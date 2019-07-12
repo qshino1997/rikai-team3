@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
   resources :indentifies
   get '/thongtinsach', to: 'indentifies#index'
-  resources :books
-  get  '/themmoi',  to: 'books#new'
-
-  resources :borrow_details
   get  '/nhandangmoi',  to: 'indentifies#new'
   get  '/sach',  to: 'indentifies#index_user'
+  post  '/sach',  to: 'borrows#create'
+  resources :books
+  get  '/themmoi',  to: 'books#new'
+  
+  resources :borrow_details
+  get  '/nguoimuonsach',  to: 'borrow_details#index'
 
   resources :borrows
   get '/muon', to: 'borrows#new'
+  get '/create', to: 'borrows#create'
+  get '/sachmuon', to: 'borrows#index'
   resources :catogaries
   get  '/loaimoi',  to: 'catogaries#new'
 

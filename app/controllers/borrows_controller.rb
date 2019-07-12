@@ -1,10 +1,12 @@
 class BorrowsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_borrow, only: [:show, :edit, :update, :destroy]
 
   # GET /borrows
   # GET /borrows.json
   def index
-    @borrows = Borrow.all
+    current_user = Borrow.where(user_id: session[:user_id]).distinct.pluck(:user_id)
+    @borrows = Borrow.joins(:indentify).where(user_id: current_user).select("indentifies.*,borrows.*")
   end
 
   # GET /borrows/1
@@ -30,11 +32,11 @@ class BorrowsController < ApplicationController
       if @borrow.save
         format.html { redirect_to @borrow, notice: 'Borrow was successfully created.' }
         format.json { render :show, status: :created, location: @borrow }
-        format.js
+        format.js{}
       else
         format.html { render :new }
         format.json { render json: @borrow.errors, status: :unprocessable_entity }
-        format.js
+        format.js{}
       end
     end
   end

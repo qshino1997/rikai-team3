@@ -4,7 +4,9 @@ class BorrowDetailsController < ApplicationController
   # GET /borrow_details
   # GET /borrow_details.json
   def index
-    @borrow_details = BorrowDetail.all
+    @borrow_details = BorrowDetail.joins(:borrow).select("borrow_details.*,borrows.*");
+    @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai")
+    @users = User.all
   end
 
   # GET /borrow_details/1

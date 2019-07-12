@@ -49,14 +49,26 @@ function toggleFunction() {
 $(document).ready(function() {
     $(".muon").click(function() {
         indentify_id = $(this).val();
-        Rails.ajax({
+        user_id = $(this).attr('data-user-id');
+        mydata = {
+            borrow: {
+                user_id: user_id,
+                soluongmuon: 1,
+                indentify_id: indentify_id,
+            }
+        };
+        console.log('user_id' + user_id);
+        console.log('indentify_id' + indentify_id);
+        console.log(mydata);
+        $.ajax({
+            type: 'POST',
             url: "/borrows",
-            type: "get",
-            data: { borrow: { indentify_id: indentify_id, soluong: 3 } },
-            success: function(data) {
+            data: mydata,
+            success: function(repsonse) {
                 location.reload();
+                // $("#tam").html(repsonse);
             },
-            error: function(data) {}
+            error: function(repsonse) {}
         })
     });
 });
