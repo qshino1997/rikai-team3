@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :check_admin, only: [:admin_edit, :quantri, :index] 
   
   def index
-    @users = User.all
+    @users = User.all.paginate(:per_page => 2, :page => params[:page])
   end
 
   def show

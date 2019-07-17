@@ -1,33 +1,38 @@
+<div class='container'>
 <p id="notice"><%= notice %></p>
 
-<h1>Borrows</h1>
+<h1>DANH SÁCH ĐĂNG KÝ MƯỢN</h1>
 
 <table>
   <thead>
     <tr>
+      <th>STT</th>
       <th>Mã sách</th>
-      <th>User_id</th>
-      <th>Soluongmuon</th>
-      <th>Indentify</th>
-      <th colspan="3"></th>
+      <th>Tên sách</th>
+      <th>Ngày mượn</th>
+      <th>Tình trạng</th>
+     
     </tr>
   </thead>
 
   <tbody>
+  <% i = 0 %>
     <% @borrows.each do |borrow| %>
       <tr>
+      <td><%= i+=1 %></td>
         <td><%= borrow.indentify_code %></td>
-        <td><%= borrow.user_id %></td>
-        <td><%= borrow.soluongmuon %></td>
-        <td><%= borrow.indentify_id %></td>
-        <td><%= link_to 'Show', borrow %></td>
-        <td><%= link_to 'Edit', edit_borrow_path(borrow) %></td>
-        <td><%= link_to 'Destroy', borrow, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= borrow.tieude %></td>
+        <td><%= borrow.created_at %></td>
+        <% if borrow.mode == 0 %>
+        <td><span class="tinhtrang" > Chưa được mượn </button></td>
+        <% else %>
+        <td><span class"tinhtrang" > Được mượn</button></td>
+        
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate%>
 
-<br>
-
-<%= link_to 'New Borrow', new_borrow_path %>
+</div>

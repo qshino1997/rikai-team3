@@ -6,6 +6,7 @@
 <table>
   <thead>
     <tr>
+      <th>STT</th>
       <th>Mã sách</th>
       <th>Tên sách</th>
       <th>Tác giả</th>
@@ -15,8 +16,10 @@
   </thead>
 
   <tbody>
+  <% i = 0 %>
     <% @indentifies.each do |indentify| %>
       <tr>
+      <td><%= i+=1 %> </td>
         <td><%= indentify.indentify_code %></td>
         <td><%= indentify.tieude %></td>
         <td><%= indentify.tacgia %></td>

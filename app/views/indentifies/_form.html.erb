@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :indentify_code %>
-    <%= form.text_field :indentify_code %>
+    <%= form.label :indentify_code, "Mã sách mới" %>
+    <%= form.text_field :indentify_code, placeholder:"Mã sách mới: T01" %>
   </div>
 
   <div class="field">
@@ -23,6 +23,6 @@
   <%= form.collection_select :catogary_id, @catogaries, :id, :tenloai %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit value:"Thêm" %>
   </div>
 <% end %>

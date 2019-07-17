@@ -1,0 +1,85 @@
+<div class='container'>
+<p id="notice"><%= notice %></p>
+
+<h1>Số sách chưa trả</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>MASSV</th>
+      <th>Họ và tên</th>
+      <th>Mã sách</th>
+      <th>Tên sách</th>
+      <th>Ngày mượn</th>
+      <th>Tình trạng</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+        <% @borrows.each do |borrow| %>
+          <tr>
+              <% if history.user_id == borrow.user_id and history.indentify_id == borrow.indentify_id %>
+                <td><%= history.masv %></td>
+                <td><%= history.hoten %></td>
+                <td><%= history.indentify_code %></td>
+                <td><%= history.tieude %></td>
+                <td><%= history.created_at %></td>
+                <% if history.mode == 0 %>
+                    <td><button class="trasach" data-delete="<%= borrow.id %>" data-id="<%= history.id %>" data-user-id="<%= history.user_id%>" data-indentify-id="<%= history.indentify_id %>" data-book-id="<%= history.book_id %>">Chưa trả</button></td>
+                <% end %>
+            <% end %>
+          
+          </tr>
+        <% end %>
+    <% end %>
+    <script>
+    $(document).ready(function() {
+    $(".trasach").click(function() {
+      // :user_id, :indentify_id, :book_id, :mode
+      user_id = $(this).attr('data-user-id');
+      indentify_id = $(this).attr('data-indentify-id');
+      book_id = $(this).attr('data-book-id');
+      id = $(this).attr('data-id');
+      id_delete = $(this).attr('data-delete');
+      console.log(id);
+      mydata = {
+          history: {
+              user_id: user_id,
+              indentify_id: indentify_id,
+              book_id: book_id,
+              mode: 1
+
+          }
+      };
+      $.ajax({
+          type: 'PATCH',
+          url: "/histories/" + id,
+          data: mydata,
+          success: function(repsonse) {
+              alert("Trả sách thành công.");
+              window.location.reload();
+              // $("#tam").html(repsonse);
+          },
+          error: function(repsonse) {
+              window.location.reload();
+          }
+      })
+      $.ajax({
+          type: 'DELETE',
+          url: "/borrows/" + id_delete,
+          success: function(repsonse) {
+              // location.reload();
+              // $("#tam").html(repsonse);
+          },
+          error: function(repsonse) {}
+      })
+  });
+  });
+
+    </script>
+  </tbody>
+</table>
+<%= will_paginate%>
+
+</div>

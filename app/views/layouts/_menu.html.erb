@@ -1,22 +1,23 @@
 <% if logged_in? %>
 <div id="menu1">
-<ul>
+<ul class="slidebar_menu">
 <% if current_user.admin %> 
 
-<li><a><%= link_to 'Xem tất cả người dùng' , users_path %></a>
-<li><a><%= link_to 'Danh sách mượn sách' , nguoimuonsach_path %></a>
-<li><a><%= link_to 'Thông tin về sách' , thongtinsach_path %></a>
-<li><a><%= link_to 'Thêm sách' , themmoi_path %></a>
-<li><a><%= link_to 'Thể loại sách' , loaimoi_path %></a>
-<li><a><%= link_to 'Phân loại sách' , nhandangmoi_path %></a>
+<li class='li'><a><%= link_to 'Xem tất cả người dùng' , users_path, class:"thanhmenu" %></a>
+<li class='li'><a><%= link_to 'Danh sách chờ xác nhận' , activeborrow_path, class:"thanhmenu" %></a>
+<li class='li' ><a><%= link_to 'Danh sách chưa trả', chuatra_path,class:"thanhmenu" %></a>
+<li class='li'><a><%= link_to 'Thông tin về sách' , thongtinsach_path,class:"thanhmenu" %></a>
+<li class='li'><a><%= link_to 'Thêm sách mới' , loaimoi_path,class:"thanhmenu" %></a>
+<li class='li'><a><%= link_to 'Lịch sử ' , lichsu_path,class:"thanhmenu" %></a>
 </li>
 </ul>
 <% end %>
 <% unless current_user.admin %> 
-<li><a><%= session[:user_id] %></a>
-<li><a><%= link_to 'Xem thông tin tài khoản' , current_user %></a></li>
-<li><a><%= link_to 'Trang chủ' , sach_path %></a></li>
-<li><a><%= link_to 'Sách mượn' , sachmuon_path %></a></li>
+<li class='li'><a><%= link_to 'Xem thông tin tài khoản' , current_user,class:"thanhmenu" %></a></li>
+<li class='li'><a><%= link_to 'Trang chủ' , sach_path,class:"thanhmenu" %></a></li>
+<li class='li'><a><%= link_to 'Sách đăng ký mượn' , sachmuon_path,class:"thanhmenu" %></a></li>
+<li class='li'><a><%= link_to 'Sách đang mượn' , sachchuatra_path,class:"thanhmenu" %></a></li>
+<li class='li'><a><%= link_to 'Lịch sử' , lichsuuser_path,class:"thanhmenu" %></a></li>
 <% end %>
 </ul>
 <% end %>

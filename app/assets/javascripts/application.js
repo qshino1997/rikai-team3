@@ -46,29 +46,153 @@ function toggleFunction() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
-$(document).ready(function() {
-    $(".muon").click(function() {
-        indentify_id = $(this).val();
-        user_id = $(this).attr('data-user-id');
-        mydata = {
-            borrow: {
-                user_id: user_id,
-                soluongmuon: 1,
-                indentify_id: indentify_id,
-            }
-        };
-        console.log('user_id' + user_id);
-        console.log('indentify_id' + indentify_id);
-        console.log(mydata);
-        $.ajax({
-            type: 'POST',
-            url: "/borrows",
-            data: mydata,
-            success: function(repsonse) {
-                location.reload();
-                // $("#tam").html(repsonse);
-            },
-            error: function(repsonse) {}
-        })
-    });
-});
+// $(document).ready(function() {
+//     console.log("hhhhh");
+//     $(".muon").click(function() {
+//         indentify_id = $(this).val();
+//         user_id = $(this).attr('data-user-id');
+//         book_id = $(this).attr('data-book-id');
+//         mydata = {
+//             borrow: {
+//                 user_id: user_id,
+//                 soluongmuon: 1,
+//                 indentify_id: indentify_id,
+//                 book_id: book_id,
+//             }
+//         };
+
+//         $.ajax({
+//             type: 'POST',
+//             url: "/borrows",
+//             data: mydata,
+//             success: function(repsonse) {
+//                 alert("Mượn thành công");
+//                 location.reload();
+//                 // $("#tam").html(repsonse);
+//             },
+//             error: function(repsonse) {
+//                 alert("Sách này đã được mượn");
+//             }
+//         })
+//     });
+//     $("#active").click(function() {
+//         indentify_id = $(this).val();
+//         book_id = $(this).attr('data-book-id');
+//         mode = $(this).attr('data-active');
+//         user_id = $(this).attr('data-user-id');
+//         id = $(this).attr('data-borrow-id');
+
+//         mydata = {
+//             borrow: {
+//                 user_id: user_id,
+//                 soluongmuon: 1,
+//                 indentify_id: indentify_id,
+//                 book_id: book_id,
+//                 mode: mode,
+//                 mode1: 0
+//             }
+//         };
+//         mydata1 = {
+//             history: {
+//                 user_id: user_id,
+//                 indentify_id: indentify_id,
+//                 book_id: book_id,
+//                 mode: 0,
+//             }
+//         };
+//         $.ajax({
+//             type: 'PATCH',
+//             url: "/borrows/" + id,
+//             data: mydata,
+//             success: function(repsonse) {
+//                 alert("Đã cho phép mượn");
+//                 location.reload();
+//                 // $("#tam").html(repsonse);
+//             },
+//             error: function(repsonse) {
+//                 console.log(response);
+//             }
+//         })
+//         $.ajax({
+//             type: 'POST',
+//             url: "/histories",
+//             data: mydata1,
+//             success: function(repsonse) {
+//                 location.reload();
+//                 // $("#tam").html(repsonse);
+//             },
+//             error: function(repsonse) {
+//                 console.log(response);
+//             }
+//         })
+//     });
+//     $("#notactive").click(function() {
+//         indentify_id = $(this).val();
+//         book_id = $(this).attr('data-book-id');
+//         mode = $(this).attr('data-active');
+//         user_id = $(this).attr('data-user-id');
+//         id = $(this).attr('data-borrow-id');
+
+//         mydata = {
+//             borrow: {
+//                 user_id: user_id,
+//                 soluongmuon: 1,
+//                 indentify_id: indentify_id,
+//                 book_id: book_id,
+//                 mode: mode,
+//                 mode1: 1
+//             }
+//         };
+//         $.ajax({
+//             type: 'PATCH',
+//             url: "/borrows/" + id,
+//             data: mydata,
+//             success: function(repsonse) {
+//                 location.reload();
+//                 // $("#tam").html(repsonse);
+//             },
+//             error: function(repsonse) {}
+//         })
+//     });
+//     $(".trasach").click(function() {
+//         // :user_id, :indentify_id, :book_id, :mode
+//         user_id = $(this).attr('data-user-id');
+//         indentify_id = $(this).attr('data-indentify-id');
+//         book_id = $(this).attr('data-book-id');
+//         id = $(this).attr('data-id');
+//         id_delete = $(this).attr('data-delete');
+//         console.log(id);
+//         mydata = {
+//             history: {
+//                 user_id: user_id,
+//                 indentify_id: indentify_id,
+//                 book_id: book_id,
+//                 mode: 1
+
+//             }
+//         };
+//         $.ajax({
+//             type: 'PATCH',
+//             url: "/histories/" + id,
+//             data: mydata,
+//             success: function(repsonse) {
+//                 alert("Trả sách thành công.");
+//                 window.location.reload();
+//                 // $("#tam").html(repsonse);
+//             },
+//             error: function(repsonse) {
+//                 window.location.reload();
+//             }
+//         })
+//         $.ajax({
+//             type: 'DELETE',
+//             url: "/borrows/" + id_delete,
+//             success: function(repsonse) {
+//                 // location.reload();
+//                 // $("#tam").html(repsonse);
+//             },
+//             error: function(repsonse) {}
+//         })
+//     });
+
+// });

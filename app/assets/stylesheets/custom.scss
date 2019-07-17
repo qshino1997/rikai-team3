@@ -208,18 +208,18 @@ html {
     }
 }
 
-#menu1 ul {
+#menu1 .slidebar_menu {
     list-style-type: none;
     background: #1f5688;
     text-align: center;
-    li {
+    .li {
         color: #f1f1f1;
         display: inline-table;
         width: 160px;
         height: 40px;
         line-height: 40px;
         position: relative;
-        a {
+        .thanhmenu {
             color: #f1f1f1;
             text-decoration: none;
             display: block;
@@ -261,13 +261,78 @@ td {
 
 .infb {
     border: 1px solid;
-    // text-align: -webkit-center;
     font-size: 23px;
+    margin: 4px;
+    border-radius: 22px;
+}
+
+.slide_loai {
+    cursor: pointer;
+    border: none;
+    margin-left: -10%;
+}
+
+.loai {
+    list-style: none;
+    padding: 4%;
+}
+
+.loai:hover {
+    background: #666;
 }
 
 // button mượn
 .muon {
-    width: 100%;
     color: red;
     background: #d9edf7;
+    width: 112%;
+    border-radius: 30px;
+    margin-left: -15px;
+}
+
+#button_muon {
+    width: 37%;
+}
+
+.muon:hover {
+    background: green;
+}
+
+.tinhtrang,
+.active {
+    color: red;
+}
+
+input {
+    width: 20%;
+    font-size: 23px;
+}
+
+select {
+    width: 15%;
+}
+
+.xuatban,
+.ngaysinh {
+    width: 43%;
+}
+
+.image {
+    width: 100%;
+    height: 200px;
+    margin-top: 3%;
+}
+
+.anhsach {
+    float: left;
+    margin-right: 4%;
+}
+
+filedset {
+    font-size: 26px;
+}
+
+.anh_chitiet {
+    width: 350px;
+    height: 439px;
 }

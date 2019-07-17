@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  resources :histories
+  get '/chuatra', to: 'histories#index'
+  get '/lichsu', to: 'histories#index_history'
+  get '/lichsuuser', to: 'histories#index_history_user'
   resources :indentifies
   get '/thongtinsach', to: 'indentifies#index'
   get  '/nhandangmoi',  to: 'indentifies#new'
+  get  '/show',  to: 'indentifies#show'
+  get 'indentifies/show'
+  get  '/show_catogary',  to: 'indentifies#show_catogary'
   get  '/sach',  to: 'indentifies#index_user'
   post  '/sach',  to: 'borrows#create'
   resources :books
@@ -14,6 +21,8 @@ Rails.application.routes.draw do
   get '/muon', to: 'borrows#new'
   get '/create', to: 'borrows#create'
   get '/sachmuon', to: 'borrows#index'
+  get '/sachchuatra', to: 'borrows#sachchuatra'
+  get '/activeborrow', to: 'borrows#active_borrow'
   resources :catogaries
   get  '/loaimoi',  to: 'catogaries#new'
 

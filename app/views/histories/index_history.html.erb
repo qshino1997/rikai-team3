@@ -1,0 +1,34 @@
+<div class='container'>
+<p id="notice"><%= notice %></p>
+
+<h1>LỊCH SỬ</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>MASSV</th>
+      <th>Họ và tên</th>
+      <th>Mã sách</th>
+      <th>Tên sách</th>
+      <th>Ngày mượn</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% i = 0 %>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= i+=1 %></td>
+        <td><%= history.masv %></td>
+        <td><%= history.hoten %></td>
+        <td><%= history.indentify_code %></td>
+        <td><%= history.tieude %></td>
+        <td><%= history.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate%>
+
+</div>

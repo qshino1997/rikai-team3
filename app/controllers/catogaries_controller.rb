@@ -29,8 +29,7 @@ class CatogariesController < ApplicationController
 
     respond_to do |format|
       if @catogary.save
-        format.html { redirect_to @catogary, notice: 'Catogary was successfully created.' }
-        format.json { render :show, status: :created, location: @catogary }
+        format.html {redirect_to themmoi_path}
       else
         format.html { render :new }
         format.json { render json: @catogary.errors, status: :unprocessable_entity }

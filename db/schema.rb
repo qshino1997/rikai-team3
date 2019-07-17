@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_035156) do
+ActiveRecord::Schema.define(version: 2019_07_16_132233) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tieude"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_07_12_035156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mode", limit: 1
+    t.string "picture"
   end
 
   create_table "borrow_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -39,10 +40,22 @@ ActiveRecord::Schema.define(version: 2019_07_12_035156) do
     t.integer "indentify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "book_id"
+    t.integer "mode", limit: 1, default: 0
+    t.integer "mode1", limit: 1, default: 0
   end
 
   create_table "catogaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tenloai"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "indentify_id"
+    t.integer "book_id"
+    t.integer "mode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
