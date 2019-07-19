@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :logged_in_user, only: [:edit, :update, :show, :adminedit, :quantri]
   before_action :correct_user,   only: [:edit, :update]
   before_action :check_admin, only: [:admin_edit, :quantri, :index] 
@@ -31,9 +32,11 @@ class UsersController < ApplicationController
   
   def update
       if @user.update(user_params)
+        format.js{}
         redirect_to current_user
         flash[:success] = 'Cập nhập thông tin thành công'
       else
+        format.js{}
         render 'edit'
         flash[:danger] = 'Cập nhập thông tin thất bại'
       end
@@ -59,7 +62,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:id, :email, :password ,:masv , :lop , :hoten , :sdt , :thuongtru , :namsinh_at )
+      params.require(:user).permit(:id, :email, :password ,:masv , :lop , :hoten , :sdt , :thuongtru , :namsinh_at,:admin )
     end
 
     def logged_in_user

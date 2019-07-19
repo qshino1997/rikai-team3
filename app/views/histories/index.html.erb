@@ -6,6 +6,7 @@
 <table>
   <thead>
     <tr>
+    <th>STT </th>
       <th>MASSV</th>
       <th>Họ và tên</th>
       <th>Mã sách</th>
@@ -16,10 +17,12 @@
   </thead>
 
   <tbody>
+  <% i = 0 %>
     <% @histories.each do |history| %>
         <% @borrows.each do |borrow| %>
           <tr>
               <% if history.user_id == borrow.user_id and history.indentify_id == borrow.indentify_id %>
+              <td><%= i+= 1 %></td>
                 <td><%= history.masv %></td>
                 <td><%= history.hoten %></td>
                 <td><%= history.indentify_code %></td>
@@ -58,19 +61,16 @@
           data: mydata,
           success: function(repsonse) {
               alert("Trả sách thành công.");
-              window.location.reload();
-              // $("#tam").html(repsonse);
+              location.reload();
           },
           error: function(repsonse) {
-              window.location.reload();
           }
       })
       $.ajax({
           type: 'DELETE',
           url: "/borrows/" + id_delete,
           success: function(repsonse) {
-              // location.reload();
-              // $("#tam").html(repsonse);
+               location.reload();
           },
           error: function(repsonse) {}
       })

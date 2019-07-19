@@ -1,10 +1,9 @@
 <div class ="container">
 <p id="notice"><%= notice %></p>
-<div class="container">
 <filedset>
 <% @indentifies.each do |indentify| %>
   <% if indentify.book_id == @indentify.book_id %>
-  <legend>Thông tin về sách <%= indentify.tieude %> </legend>
+  <legend id="tts">Thông tin về sách <%= indentify.tieude %> </legend>
       <div class='anhsach'><a href="/indentifies/<%= indentify.id %>"><image src="/uploads/images/<%= indentify.picture %>" class="anh_chitiet"></a></div>
       <div>Mã sách : <%= indentify.indentify_code %></div>
       <div>Tên sách : <%= indentify.tieude %></div>

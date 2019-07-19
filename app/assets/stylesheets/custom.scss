@@ -262,14 +262,25 @@ td {
 .infb {
     border: 1px solid;
     font-size: 23px;
-    margin: 4px;
+    margin: 3px 26px 20px 52px;
     border-radius: 22px;
+    height: 462px;
+}
+
+.infb:hover {
+    box-shadow: 1px 9px 25px 4px;
 }
 
 .slide_loai {
     cursor: pointer;
     border: none;
     margin-left: -10%;
+    font-size: 23px;
+}
+
+.slide_loai a {
+    text-decoration: none;
+    background: none;
 }
 
 .loai {
@@ -285,9 +296,9 @@ td {
 .muon {
     color: red;
     background: #d9edf7;
-    width: 112%;
+    width: 111%;
     border-radius: 30px;
-    margin-left: -15px;
+    margin-left: -14px;
 }
 
 #button_muon {
@@ -321,6 +332,7 @@ select {
     width: 100%;
     height: 200px;
     margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 .anhsach {
@@ -335,4 +347,30 @@ filedset {
 .anh_chitiet {
     width: 350px;
     height: 439px;
+}
+
+.noidung {
+    min-height: 170px;
+    overflow: hidden;
+    height: 204px;
+}
+
+#lich {
+    position: fixed;
+    left: 80%;
+    top: 6%;
+}
+
+#tts {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.toi,
+.lui {
+    text-align: center;
+    font-size: 22px;
+}
+.phantrang{
+    clear: left;
 }

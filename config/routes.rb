@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :feedbacks
+  get '/phanhoi', to: 'feedbacks#new'
+
   resources :histories
   get '/chuatra', to: 'histories#index'
   get '/lichsu', to: 'histories#index_history'
@@ -25,7 +28,7 @@ Rails.application.routes.draw do
   get '/activeborrow', to: 'borrows#active_borrow'
   resources :catogaries
   get  '/loaimoi',  to: 'catogaries#new'
-
+  get 'catogaries/show'
   get 'sessions/new'
   get  '/signup',  to: 'users#new'
   post  '/signup', to: 'users#create'

@@ -1,38 +1,33 @@
 <div class="all">
 <fieldset class="col-sm-2">
 <legend>Thể loại sách</legend>
-<ul class=" infb slide_loai">
-<% @indentifies.each do |indentify| %>
-    <li class="loai" data-loai="<%= indentify.id %>"><%= indentify.tenloai %></li>
+<ul class="slide_loai">
+<% @catogaries.each do |catogary| %>
+    <a href="/catogaries/<%= catogary.id %>"><li class="loai" data-id="<%= catogary.id %>"><%= catogary.tenloai %></li></a>
 <% end %>
 </filedset>
 <ul>    
 </div>
 <div class ="container">
 <p id="notice"><%= notice %></p>
-<div class="container">
   <div class="row">
     <% @indentifies.each do |indentify| %>
-        <div class="col-sm-4 infb">
+        <div class="col-sm-3 infb">
         <div><a href="/indentifies/<%= indentify.id %>"><image src="/uploads/images/<%= indentify.picture %>" class="image"></a></div>
-        <div>
+        <div class="noidung">
         <div>Mã sách : <%= indentify.indentify_code %></div>
         <div>Tên sách : <%= indentify.tieude %></div>
         <div>Tác giả : <%= indentify.tacgia %></div>
         
         <div>Loại : <%= indentify.tenloai %></div>
+        </div>
         <div><button class="muon" data-book-id="<%= indentify.book_id%>" value = "<%= indentify.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
-       </div>
-             
     </div>
-   
-
     <% end %>
- 
+    <div class="phantrang">
     <%= will_paginate%>
+    </div>
   </div>
-</div>
-<div id="tam"></div>
 <script>
    $(document).ready(function() {
             $(".muon").click(function() {
@@ -54,7 +49,6 @@
                     data: mydata,
                     success: function(repsonse) {
                         alert("Mượn thành công");
-                        location.reload();
                     },
                     error: function(repsonse) {
                         alert("Sách này đã được mượn");
@@ -62,19 +56,11 @@
                 })
             });
             $(".loai").click(function() {
-                $(".all").hide();
-                catogary_id = $(this).attr('data-loai');
-               mydata = {
-                   indentify:{
-                    indentify_code:1 ,
-                    book_id: 1, 
-                    catogary_id:catogary_id
-                   }
-               }
-               console.log(catogary_id);
+                id = $(this).attr('data-id');
+                
                 $.ajax({
                     type: 'GET',
-                    url: "/indentifies/"+catogary_id,
+                    url: "/catogaries/"+id,
                     success: function(repsonse) {
                         console.log(repsonse);
                     },
@@ -88,3 +74,5 @@
 
 });
    </script>
+   </div>
+ 

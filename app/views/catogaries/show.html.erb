@@ -1,9 +1,76 @@
+<div class="all">
+<fieldset class="col-sm-2">
+<legend>Thể loại sách</legend>
+<ul class="slide_loai">
+<% @catogaries.each do |catogary| %>
+  <a href="/catogaries/<%= catogary.id %>"> <li class="loai" data-id="<%= catogary.id %>"><%= catogary.tenloai %></li></a>
+<% end %>
+</filedset>
+<ul>    
+</div>
+<div class="container">
 <p id="notice"><%= notice %></p>
+<div class="row">
+    <% @indentify_catogaries.each do |indentify_catogary| %>
+      <% if indentify_catogary.catogary_id == @catogary.id %>
+      <div class="col-sm-3 infb">
+        <div><a href="/indentifies/<%= indentify_catogary.id %>"><image src="/uploads/images/<%= indentify_catogary.picture %>" class="image"></a></div>
+        <div class="noidung">
+        <div>Mã sách : <%= indentify_catogary.indentify_code %></div>
+        <div>Tên sách : <%= indentify_catogary.tieude %></div>
+        <div>Tác giả : <%= indentify_catogary.tacgia %></div>
+        
+        <div>Loại : <%= indentify_catogary.tenloai %></div>
+        </div>
+        <div><button class="muon" data-book-id="<%= indentify_catogary.book_id%>" value = "<%= indentify_catogary.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+<script>
+   $(document).ready(function() {
+            $(".muon").click(function() {
+                indentify_id = $(this).val();
+                user_id = $(this).attr('data-user-id');
+                book_id = $(this).attr('data-book-id');
+                mydata = {
+                    borrow: {
+                        user_id: user_id,
+                        soluongmuon: 1,
+                        indentify_id: indentify_id,
+                        book_id: book_id,
+                    }
+                };
 
-<p>
-  <strong>Tenloai:</strong>
-  <%= @catogary.tenloai %>
-</p>
+                $.ajax({
+                    type: 'POST',
+                    url: "/borrows",
+                    data: mydata,
+                    success: function(repsonse) {
+                        alert("Mượn thành công");
+                    },
+                    error: function(repsonse) {
+                        alert("Sách này đã được mượn");
+                    }
+                })
+            });
+            $(".loai").click(function() {
+                id = $(this).attr('data-id');
+                
+                $.ajax({
+                    type: 'GET',
+                    url: "/catogaries/"+id,
+                    success: function(repsonse) {
+                        console.log(repsonse);
+                    },
+                    error: function(repsonse) {
+                    }
+                })
+            });
 
-<%= link_to 'Edit', edit_catogary_path(@catogary) %> |
-<%= link_to 'Back', catogaries_path %>
+
+
+
+});
+   </script>

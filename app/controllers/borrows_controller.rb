@@ -13,7 +13,8 @@ class BorrowsController < ApplicationController
     
   end
   def sachchuatra
-    @borrows = Borrow.joins(:indentify, :book,:user).where(mode:1).select("indentifies.*,borrows.*,books.*,borrows.mode,users.*,borrows.id",).paginate(:per_page => 2, :page => params[:page])
+    current_user = Borrow.where(user_id: session[:user_id]).distinct.pluck(:user_id)
+    @borrows = Borrow.joins(:indentify, :book,:user).where(mode:1,user_id: current_user).select("indentifies.*,borrows.*,books.*,borrows.mode,users.*,borrows.id",).paginate(:per_page => 2, :page => params[:page])
     
   end
 
@@ -69,8 +70,7 @@ class BorrowsController < ApplicationController
   def destroy
     @borrow.destroy
     respond_to do |format|
-      format.html { redirect_to borrows_url, notice: 'Borrow was successfully destroyed.' }
-      format.json { head :no_content }
+      redirect_to chuatra_path
     end
   end
 

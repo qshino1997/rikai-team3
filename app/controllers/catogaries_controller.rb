@@ -10,11 +10,15 @@ class CatogariesController < ApplicationController
   # GET /catogaries/1
   # GET /catogaries/1.json
   def show
+    @indentify_catogaries =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai")
+    @catogaries = Catogary.all
+
   end
 
   # GET /catogaries/new
   def new
     @catogary = Catogary.new
+
     
   end
 

@@ -4,12 +4,12 @@ class IndentifiesController < ApplicationController
   # GET /indentifies
   # GET /indentifies.json
   def index
-    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*").paginate(:per_page => 2, :page => params[:page])
+    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*,indentifies.id").paginate(:per_page => 5, :page => params[:page])
   end
 
   def index_user
-     @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 10, :page => params[:page])
-   
+     @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 12, :page => params[:page])
+    @catogaries = Catogary.all
   end
   def show_catogary
      @indentify_catogaries =Indentify.joins(:book,:catogary).where(catogary_id:  3 ).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 2, :page => params[:page])

@@ -12,7 +12,7 @@ class HistoriesController < ApplicationController
     @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
   end
   def index_history_user
-    @histories = History.joins(:book,:indentify,:user).where(mode: 1,user_id:session[:user_id]).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
+    @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
   end
 
   # GET /histories/1

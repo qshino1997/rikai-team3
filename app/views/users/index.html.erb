@@ -28,7 +28,7 @@
         <% if user.admin == true %>
         <td>Quản lý</td>
         <% else %>
-        <td>Người mượn</td>
+        <td>Người mượn </td> 
         <% end %>
         <td><%= link_to 'Thông tin', user %></td>
         <td ><%= link_to 'Sửa', admin_edit_user_path(current_user) %></td>
@@ -42,3 +42,27 @@
 
 <%= link_to 'Thêm người dùng', new_user_path %>
 </div>
+<script>
+$(document).ready(function(){
+  $(".ad").click(function(){
+    id= $(this).attr("data-id");
+    mydata = {
+      user:{
+      admin: 1,
+        
+      }
+    };
+     console.log(mydata);
+    $.ajax({
+      type: 'PATCH',
+      url: "/users/"+id,
+      data: mydata,
+      success: function(repsonse) {
+          alert("Trở thành quản lý");
+      },
+      error: function(repsonse) {
+      }
+  })
+    });
+});
+</script>
