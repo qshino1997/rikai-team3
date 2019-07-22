@@ -13,21 +13,21 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: 
-  database: QLTV1
-  socket: /opt/lampp/var/mysql/mysql.sock
+  username: quang
+  password: minminmin
+  database: QLTV
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: QLTV1
+  database: QLTV
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: QLTV1
+  database: QLTV
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -50,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: QLTV1
-  username: QLTV1
+  database: QLTV
+  username: QLTV
   password: <%= ENV['QLTV1_DATABASE_PASSWORD'] %>

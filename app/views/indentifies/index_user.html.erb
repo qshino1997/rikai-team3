@@ -11,7 +11,7 @@
 <div class ="container">
 <p id="notice"><%= notice %></p>
   <div class="row">
-    <% @indentifies.each do |indentify| %>
+    <% @books.each do |book| %>
         <div class="col-sm-3 infb">
         <div><a href="/indentifies/<%= indentify.id %>"><image src="/uploads/images/<%= indentify.picture %>" class="image"></a></div>
         <div class="noidung">
@@ -21,6 +21,7 @@
         
         <div>Loại : <%= indentify.tenloai %></div>
         </div>
+          
         <div><button class="muon" data-book-id="<%= indentify.book_id%>" value = "<%= indentify.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
     </div>
     <% end %>

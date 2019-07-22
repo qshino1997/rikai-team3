@@ -10,6 +10,7 @@ class IndentifiesController < ApplicationController
   def index_user
      @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 12, :page => params[:page])
     @catogaries = Catogary.all
+
   end
   def show_catogary
      @indentify_catogaries =Indentify.joins(:book,:catogary).where(catogary_id:  3 ).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 2, :page => params[:page])
@@ -21,6 +22,7 @@ class IndentifiesController < ApplicationController
     # GET /indentifies/1
     # GET /indentifies/1.json
   def show
+
     @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*,books.id, books.*,indentifies.id,catogaries.tenloai")
 
   end
@@ -94,6 +96,21 @@ class IndentifiesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def indentify_params
-      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id)
+      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id, :picture)
+    end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end  
+
+    def correct_book
+      @book = Book.find(params[:id])
+      redirect_to(root_url) unless @book == current_book
     end
 end

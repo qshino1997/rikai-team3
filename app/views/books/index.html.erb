@@ -1,32 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<h3 class="w3-center">Tất cả sách</h3>
+<div style="margin-bo ttom: 30px">
+<%= form_tag(books_path, method: :get) do %>
+<%= text_field_tag :timkiembooks , params[:timkiembooks] %>
+<%= submit_tag 'Tìm kiếm', tieude: nil %>
+<% end %>
+</div>
 
-<table>
+</div>
+<table class="tablest">
   <thead>
     <tr>
-      <th>Tieude</th>
-      <th>Tacgia</th>
-      <th>Namxuatbang</th>
-      <th>Mota</th>
-      <th>Gia</th>
-      <th>Catogary</th>
+      <th >Tiêu đề</th>
+      <th >Tác giả</th>
+      <th >Năm xuất bản</th>
+      <th >Loại sách</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="tablest">
+
     <% @books.each do |book| %>
       <tr>
-        <td><%= book.tieude %></td>
-        <td><%= book.tacgia %></td>
-        <td><%= book.namxuatbang %></td>
-        <td><%= book.mota %></td>
-        <td><%= book.gia %></td>
-        <td><%= book.catogary_id %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td ><%= book.tieude %></td>
+        <td ><%= book.tacgia %></td>
+        <td ><%= book.namxuatbang %></td>
+        <td ><%= link_to 'Thông tin', book %></td>
+        <td ><%= link_to 'Xóa', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

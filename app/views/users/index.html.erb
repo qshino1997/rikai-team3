@@ -2,7 +2,12 @@
 <p id="notice"><%= notice %></p>
 
 <h3 class="w3-center">Danh sách người đọc đã đăng ký</h3>
-
+<div style="margin-bo ttom: 30px">
+<%= form_tag(users_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', hoten: nil %>
+<% end %>
+</div>
 <table class="tablest">
   <thead>
     <tr>

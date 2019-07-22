@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_07_18_083951) do
 
+
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tieude"
     t.string "tacgia"

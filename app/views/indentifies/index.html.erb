@@ -1,9 +1,9 @@
 <div class ="container">
 <p id="notice"><%= notice %></p>
 
-<h1>THỐNG KÊ CÁC SÁCH</h1>
+<h3 class="w3-center">Thống kê các sách</h3>
 
-<table>
+<table class="tablest">
   <thead>
     <tr>
       <th>STT</th>
@@ -24,15 +24,17 @@
         <td><%= indentify.tieude %></td>
         <td><%= indentify.tacgia %></td>
         <td><%= indentify.namxuatbang %></td>
+
         <td><%= link_to 'Thông tin', indentify %></td>
         <td><%= link_to 'Sửa', edit_indentify_path(indentify) %></td>
         <td><%= link_to 'Xóa', indentify, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
-    <% end %>
+      <% end %>
   </tbody>
 </table>
 <%= will_paginate %>
 <br>
 
-# <%= link_to 'New Indentify', new_indentify_path %>
+<%= link_to 'New Indentify', new_indentify_path %>
 </div>
