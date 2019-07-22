@@ -371,6 +371,40 @@ filedset {
     text-align: center;
     font-size: 22px;
 }
-.phantrang{
+
+.phantrang {
     clear: left;
+}
+
+#search {
+    POSITION: fixed;
+    top: 7%;
+    left: 85%;
+}
+
+#search input {
+    width: 84%;
+    color: black;
+}
+
+// footer
+#map {
+    width: 36%;
+    float: left;
+}
+
+#muc {
+    height: 250px;
+}
+
+.ul_footer {
+    padding: 3%;
+    width: 64%;
+    /* background: blue; */
+    float: right;
+}
+
+.li_footer {
+    font-size: 23px;
+    padding: 1%;
 }

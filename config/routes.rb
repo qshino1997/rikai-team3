@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :feedbacks
   get '/phanhoi', to: 'feedbacks#new'
+  get '/thuphanhoi', to: 'feedbacks#index'
 
   resources :histories
   get '/chuatra', to: 'histories#index'

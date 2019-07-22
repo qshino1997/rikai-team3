@@ -4,7 +4,7 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks
   # GET /feedbacks.json
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.joins(:user).select("feedbacks.*,users.*")
   end
 
   # GET /feedbacks/1
@@ -30,7 +30,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to sach_path }
         format.json { render :show, status: :created, location: @feedback }
       else
         format.html { render :new }

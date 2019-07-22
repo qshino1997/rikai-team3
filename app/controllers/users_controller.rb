@@ -32,11 +32,9 @@ class UsersController < ApplicationController
   
   def update
       if @user.update(user_params)
-        format.js{}
         redirect_to current_user
         flash[:success] = 'Cập nhập thông tin thành công'
       else
-        format.js{}
         render 'edit'
         flash[:danger] = 'Cập nhập thông tin thất bại'
       end

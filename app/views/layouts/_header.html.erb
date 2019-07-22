@@ -10,6 +10,7 @@
       <i class="fa fa-bars"></i>
     </a>
      <div> <%= link_to "Trang chủ", root_url , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%>
+    
      <% if logged_in? %>
      <% if current_user.admin %> 
 
@@ -19,7 +20,7 @@
 <div><%= link_to 'Thêm sách mới' , loaimoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
 <div><%= link_to 'Thông tin về sách' , thongtinsach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
 <div><%= link_to 'Lịch sử ' , lichsu_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%></div>
-<div><%= link_to 'Thư phản hồi ' , phanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
+<div><%= link_to 'Thư phản hồi ' , thuphanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
 
 <% end %>
 <% unless current_user.admin %> 
@@ -30,7 +31,7 @@
 <div><%= link_to 'Xem thông tin tài khoản' , current_user,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div></li>
 <div><%= link_to 'Phản hồi' , phanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
 <% end %>
-     <%= link_to "Đăng xuất", logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>            
+    <%= link_to "Đăng xuất", logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>            
      <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.2em; font-family: Times New Roman; font-weight: bold">
      Chào 
      <% if current_user.admin %>
@@ -52,9 +53,8 @@
 <div class="bgimg-1 w3-display-container " id="home">
   <div class="w3-display-middle" style="white-space:nowrap;">
     <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-    Đại hoc<span class="w3-hide-small">
+    Thư viện đại hoc<span class="w3-hide-small">
     Bách Khoa</span>
     </span>
   </div>
 </div>
- <%= render 'layouts/shim' %>
