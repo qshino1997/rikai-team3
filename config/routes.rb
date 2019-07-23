@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   resources :users
   root 'static_pages#home'
   get  '/users/:id/admin_edit',  to:'users#admin_edit', as: :admin_edit_user
+  resources :users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
