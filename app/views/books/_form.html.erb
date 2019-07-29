@@ -22,11 +22,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :namxuatbang ,"Năm xuất bản "%>
-    <%= form.date_select :namxuatbang %>
-  </div>
-
-  <div class="field">
     <%= form.label :mota, "Mô tả về  sách" %>
     <%= form.text_field :mota %>
   </div>
@@ -35,13 +30,23 @@
     <%= form.label :gia, "Giá " %>
     <%= form.text_field :gia %>
   </div>
+
   <div class="field">
   <%= form.label :catogary_id, "Chọn thể loại" %>
   <%= form.collection_select :catogary_id, @catogaries, :id, :tenloai %>
-</div>
- 
+  </div>
+
+  <div class="field xuatban">
+    <%= form.label :namxuatbang ,"Năm xuất bản "%>
+    <%= form.date_select :namxuatbang %>
+  </div>
+
+  <div class="field"> 
+    <%= form.label :picture %>
+    <%= form.file_field :picture, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit value:"Thêm sách mới "%>
   </div>
 <% end %>

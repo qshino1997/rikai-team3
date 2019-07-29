@@ -1,0 +1,81 @@
+<%= render 'users/menusach' %>
+<div class="all">
+<fieldset class="col-sm-2">
+<legend>Thể loại sách</legend>
+<ul class="slide_loai">
+<% @catogaries.each do |catogary| %>
+    <a href="/catogaries/<%= catogary.id %>"><li class="loai" data-id="<%= catogary.id %>"><%= catogary.tenloai %></li></a>
+<% end %>
+</filedset>
+<ul>    
+</div>
+<div class ="container">
+<p id="notice"><%= notice %></p>
+  <div class="row">
+    <% @indentifies.each do |indentify| %>
+        <div class="col-sm-3 infb">
+        <div><a href="/indentifies/<%= indentify.id %>"><image src="/uploads/images/<%= indentify.picture %>" class="image"></a></div>
+        <div class="noidung">
+        <div>Mã sách : <%= indentify.indentify_code %></div>
+        <div>Tên sách : <%= indentify.tieude %></div>
+        <div>Tác giả : <%= indentify.tacgia %></div>
+        
+        <div>Loại : <%= indentify.tenloai %></div>
+        </div>
+        <% unless current_user.admin %>
+        <div><button class="muon" data-book-id="<%= indentify.book_id%>" value = "<%= indentify.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
+        <% end %>
+        </div>
+    <% end %>
+    <div class="phantrang">
+    <%= will_paginate%>
+    </div>
+  </div>
+<script>
+   $(document).ready(function() {
+            $(".muon").click(function() {
+                indentify_id = $(this).val();
+                user_id = $(this).attr('data-user-id');
+                book_id = $(this).attr('data-book-id');
+                mydata = {
+                    borrow: {
+                        user_id: user_id,
+                        soluongmuon: 1,
+                        indentify_id: indentify_id,
+                        book_id: book_id,
+                    }
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/borrows",
+                    data: mydata,
+                    success: function(repsonse) {
+                        alert("Mượn thành công");
+                    },
+                    error: function(repsonse) {
+                        alert("Sách này đã được mượn");
+                    }
+                })
+            });
+            $(".loai").click(function() {
+                id = $(this).attr('data-id');
+                
+                $.ajax({
+                    type: 'GET',
+                    url: "/catogaries/"+id,
+                    success: function(repsonse) {
+                        console.log(repsonse);
+                    },
+                    error: function(repsonse) {
+                    }
+                })
+            });
+
+
+
+
+});
+   </script>
+   </div>
+ 

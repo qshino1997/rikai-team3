@@ -1,0 +1,40 @@
+<%= render 'users/menuuser' %>
+<div class='container'>
+<p id="notice"><%= notice %></p>
+
+<h3 class="w3-center">Lịch Sử</h3>
+
+<%= form_tag(lichsu_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', hoten: nil %>
+<% end %>
+
+<table class="tablest" style="margin-top:20px " >
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>MASSV</th>
+      <th>Họ và tên</th>
+      <th>Mã sách</th>
+      <th>Tên sách</th>
+      <th>Ngày mượn</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% i = 0 %>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= i+=1 %></td>
+        <td><%= history.masv %></td>
+        <td><%= history.hoten %></td>
+        <td><%= history.indentify_code %></td>
+        <td><%= history.tieude %></td>
+        <td><%= history.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate%>
+
+</div>

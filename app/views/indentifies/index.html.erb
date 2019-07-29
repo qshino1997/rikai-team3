@@ -1,32 +1,47 @@
+<div id="menu1">
+<ul> 
+<li><a><%= link_to 'Thêm sách mới' , loaimoi_path %></a>
+</li>
+</ul>
+</div>
+<div class ="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Indentifies</h1>
+<h3 class="w3-center">Toàn bộ loại sách</h1>
 
-<table>
+<%= form_tag(thongtinsach_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', tieude: nil %>
+<% end %>
+
+<table class="tablest" style="margin-top:20px "> 
   <thead>
     <tr>
-      <th>Indentify code</th>
-      <th>Book</th>
-      <th>Tac gia</th>
+      <th>STT</th>
+      <th>Mã sách</th>
+      <th>Tên sách</th>
+      <th>Tác giả</th>
+      <th>Năm xuất bản</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+  <% i = 0 %>
     <% @indentifies.each do |indentify| %>
       <tr>
+      <td><%= i+=1 %> </td>
         <td><%= indentify.indentify_code %></td>
         <td><%= indentify.tieude %></td>
         <td><%= indentify.tacgia %></td>
         <td><%= indentify.namxuatbang %></td>
-        <td><%= link_to 'Show', indentify %></td>
-        <td><%= link_to 'Edit', edit_indentify_path(indentify) %></td>
-        <td><%= link_to 'Destroy', indentify, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Thông tin', indentify %></td>
+        <td><%= link_to 'Sửa', edit_indentify_path(indentify) %></td>
+        <td><%= link_to 'Xóa', indentify, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate %>
 <br>
-
-<%= link_to 'New Indentify', new_indentify_path %>
+</div>

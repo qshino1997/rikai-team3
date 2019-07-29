@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <% @indentify_catogaries.each do |indentify_catogary| %>
+        <div class="col-sm-3 infb">
+        <div><image src="uploads/images/<%= indentify_catogary.picture %>" class="image"></div>
+        <div>
+        <div>Mã sách : <%= indentify_catogary.indentify_code %></div>
+        <div>Tên sách : <%= indentify_catogary.tieude %></div>
+        <div>Tác giả : <%= indentify_catogary.tacgia %></div>
+        <div>Năm xuất bản : <%= indentify_catogary.namxuatbang %></div>
+        <div>Loại : <%= indentify_catogary.tenloai %></div>
+        <div><button class="muon" data-book-id="<%= indentify_catogary.book_id%>" value = "<%= indentify_catogary.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
+       </div>
+             
+    </div>
+    <% end %>
+    <div id="tam"></div>
+    </div>
+  </div>

@@ -1,14 +1,50 @@
+<div class ="container">
 <p id="notice"><%= notice %></p>
+<filedset>
+<% @indentifies.each do |indentify| %>
+  <% if indentify.book_id == @indentify.book_id %>
+  <legend id="tts">Thông tin về sách <%= indentify.tieude %> </legend>
+      <div class='anhsach'><a href="/indentifies/<%= indentify.id %>"><image src="/uploads/images/<%= indentify.picture %>" class="anh_chitiet"></a></div>
+      <div>Mã sách : <%= indentify.indentify_code %></div>
+      <div>Tên sách : <%= indentify.tieude %></div>
+      <div>Mô tả : <%= indentify.mota %></div>
+      <div>Tác giả : <%= indentify.tacgia %></div>
+      <div>Năm xuất bản : <%= indentify.namxuatbang %></div>
+      <div>Loại : <%= indentify.tenloai %></div>
+      <% unless current_user.admin %>
+      <div><button class="muon" id="button_muon" data-book-id="<%= indentify.book_id%>" value = "<%= indentify.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
+      <% end %>
+     <% end %>
+  <% end %>
+  </filedset>
+</div>
+<script>
+   $(document).ready(function() {
+            $(".muon").click(function() {
+                indentify_id = $(this).val();
+                user_id = $(this).attr('data-user-id');
+                book_id = $(this).attr('data-book-id');
+                mydata = {
+                    borrow: {
+                        user_id: user_id,
+                        soluongmuon: 1,
+                        indentify_id: indentify_id,
+                        book_id: book_id,
+                    }
+                };
 
-<p>
-  <strong>Indentify code:</strong>
-  <%= @indentify.indentify_code %>
-</p>
-
-<p>
-  <strong>Book:</strong>
-  <%= @indentify.book_id %>
-</p>
-
-<%= link_to 'Edit', edit_indentify_path(@indentify) %> |
-<%= link_to 'Back', indentifies_path %>
+                $.ajax({
+                    type: 'POST',
+                    url: "/borrows",
+                    data: mydata,
+                    success: function(repsonse) {
+                        alert("Mượn thành công");
+                        location.reload();
+                    },
+                    error: function(repsonse) {
+                        alert("Sách này đã được mượn");
+                    }
+                })
+            });
+});
+   </script>

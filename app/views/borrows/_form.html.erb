@@ -1,4 +1,4 @@
-<%= form_with(model: borrow, local: true) do |form| %>
+<%= form_with(model: borrow, local: true, remote: true) do |form| %>
   <% if borrow.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(borrow.errors.count, "error") %> prohibited this borrow from being saved:</h2>

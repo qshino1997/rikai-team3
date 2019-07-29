@@ -1,0 +1,126 @@
+<%= render 'users/menuuser' %>
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h3 class="w3-center">Danh sách người dùng đăng ký mượn</h3>
+
+<table class="tablest">
+  <thead>
+    <tr>
+      <th >STT</th>
+      <th >Mã sách</th>
+      <th >Tên sách</th>
+      <th >Họ và tên</th>
+      <th >Lớp</th>
+      <th >Ngày mượn</th>
+      <th >Tình trạng</th>
+     
+    </tr>
+  </thead>
+
+  <tbody class="tablest">
+  <% i = 0 %>
+
+  <% @borrows.each do |borrow| %>
+    <tr>
+        <td><%= i+=1 %></td>
+        <td><%= borrow.indentify_code %></td>
+        <td><%= borrow.tieude %></td>
+        <td><%= borrow.hoten %></td>
+        <td><%= borrow.lop%></td>
+        <td><%= borrow.created_at %></td>
+        <% if borrow.mode == 0 %>
+        <td><button class="active" id="active" data-borrow-id = "<%= borrow.id%>" data-book-id="<%= borrow.book_id%>" value = "<%= borrow.indentify_id%>"   data-user-id="<%= borrow.user_id%>" data-active ="1" > Chưa được mượn </button></td>
+        <% else %>
+        <td><button class"active" id='notactive' data-borrow-id = "<%= borrow.id%>" data-book-id="<%= borrow.book_id%>" value = "<%= borrow.indentify_id%>"   data-user-id="<%= borrow.user_id%>" data-active ="0"> Được mượn</button></td>
+        
+        <% end %>
+      </tr>
+    <% end %>
+    <script>
+    $(document).ready(function() {
+    $("#active").click(function() {
+      indentify_id = $(this).val();
+      book_id = $(this).attr('data-book-id');
+      mode = $(this).attr('data-active');
+      user_id = $(this).attr('data-user-id');
+      id = $(this).attr('data-borrow-id');
+
+      mydata = {
+          borrow: {
+              user_id: user_id,
+              soluongmuon: 1,
+              indentify_id: indentify_id,
+              book_id: book_id,
+              mode: mode,
+              mode1: 0
+          }
+      };
+      mydata1 = {
+          history: {
+              user_id: user_id,
+              indentify_id: indentify_id,
+              book_id: book_id,
+              mode: 0,
+          }
+      };
+      $.ajax({
+          type: 'PATCH',
+          url: "/borrows/" + id,
+          data: mydata,
+          success: function(repsonse) {
+              alert("Đã cho phép mượn");
+              location.reload();
+              // $("#tam").html(repsonse);
+          },
+          error: function(repsonse) {
+              console.log(response);
+          }
+      })
+      $.ajax({
+          type: 'POST',
+          url: "/histories",
+          data: mydata1,
+          success: function(repsonse) {
+              location.reload();
+              // $("#tam").html(repsonse);
+          },
+          error: function(repsonse) {
+              console.log(response);
+          }
+      })
+  });
+  $("#notactive").click(function() {
+      indentify_id = $(this).val();
+      book_id = $(this).attr('data-book-id');
+      mode = $(this).attr('data-active');
+      user_id = $(this).attr('data-user-id');
+      id = $(this).attr('data-borrow-id');
+
+      mydata = {
+          borrow: {
+              user_id: user_id,
+              soluongmuon: 1,
+              indentify_id: indentify_id,
+              book_id: book_id,
+              mode: mode,
+              mode1: 1
+          }
+      };
+      $.ajax({
+          type: 'PATCH',
+          url: "/borrows/" + id,
+          data: mydata,
+          success: function(repsonse) {
+              location.reload();
+              // $("#tam").html(repsonse);
+          },
+          error: function(repsonse) {}
+      })
+  });
+  });
+    </script>
+  </tbody>
+</table>
+<%= will_paginate %>
+</div>

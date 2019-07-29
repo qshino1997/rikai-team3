@@ -9,12 +9,23 @@
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
-     <div> <%= link_to "Trang chủ", root_url , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%>
-      <% if logged_in? %>
-        <%= link_to "Đăng xuất", logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>            
-        <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.2em; font-family: Times New Roman; font-weight: bold">
-        Chào 
-        <% if current_user.admin %>
+     <div> <%= link_to "Trang chủ", root_url , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px; "%>
+    
+     <% if logged_in? %>
+     <% if current_user.admin %> 
+<div><%= link_to 'Quản lý thông tin người dùng' , users_path, class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px; " %></div>
+<div><%= link_to 'Quản lý thông tin sách' , thongtinsach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px; " %></div>
+
+<% end %>
+<% unless current_user.admin %>
+<div><%= link_to 'Thông tin sách' , sach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1em; padding: 8px 8px; " %></div>
+<div><%= link_to 'Thông tin tài khoản' , current_user,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1em; padding: 8px 8px; " %></div></li>
+<div><%= link_to 'Phản hồi' , phanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1em; padding: 8px 8px; " %></div>
+<% end %>
+    <%= link_to "Đăng xuất", logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px;" %>            
+     <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.1em; font-family: Times New Roman; font-weight: bold; padding: 8px 8px;">
+     Chào 
+     <% if current_user.admin %>
         Quản trị viên:   
         <% else %>
         Bạn: 
@@ -22,7 +33,7 @@
         <%= current_user.hoten %>
         </a>
    <% else %>
-        <%= link_to "Đăng nhập", login_path , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold;font-family: Times New Roman; font-size:1.2em"%>
+        <%= link_to "Đăng nhập", login_path , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold;font-family: Times New Roman; font-size:1.1em; padding: 8px 8px;"%>
     <% end %>
     </div>
     </a>
@@ -30,12 +41,11 @@
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+<div class="bgimg-1 w3-display-container " id="home">
   <div class="w3-display-middle" style="white-space:nowrap;">
     <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-    Đại hoc<span class="w3-hide-small">
+    Thư viện đại hoc<span class="w3-hide-small">
     Bách Khoa</span>
     </span>
   </div>
 </div>
- <%= render 'layouts/shim' %>
