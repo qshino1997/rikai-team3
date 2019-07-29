@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_07_18_083951) do
-
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tieude"
     t.string "tacgia"
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_083951) do
     t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["masv"], name: "index_users_on_masv", unique: true
+
   end
 
 end

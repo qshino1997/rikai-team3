@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
 //= require jquery
 //= require bootstrap
 // Modal Image Gallery
@@ -196,3 +197,4 @@ function toggleFunction() {
 //     });
 
 // });
+

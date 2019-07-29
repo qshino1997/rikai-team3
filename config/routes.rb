@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :feedbacks
   get '/phanhoi', to: 'feedbacks#new'
   get '/thuphanhoi', to: 'feedbacks#index'
@@ -43,4 +44,5 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/users/:id/admin_edit',  to:'users#admin_edit', as: :admin_edit_user
   resources :users
+
 end

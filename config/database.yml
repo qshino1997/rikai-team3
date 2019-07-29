@@ -17,7 +17,6 @@ default: &default
   password: minminmin
   database: QLTV
   socket: /var/run/mysqld/mysqld.sock
-  
 
 development:
   <<: *default
