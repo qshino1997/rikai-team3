@@ -1,12 +1,19 @@
 class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_admin, only: [:index]
+  before_action :check_user, only: [:new] 
   # GET /feedbacks
   # GET /feedbacks.json
   def index
-    @feedbacks = Feedback.joins(:user).select("feedbacks.*,users.*")
+    @feedbacks = if params[:timkiem]
+      @feedbacks = Feedback.joins(:user).where('hoten LIKE ?', "%#{params[:timkiem]}%").select("feedbacks.*,users.*")
+    else
+      @feedbacks = Feedback.joins(:user).select("feedbacks.*,users.*")
+    end
   end
 
+  def anfb  
+  end
   # GET /feedbacks/1
   # GET /feedbacks/1.json
   def show
@@ -16,7 +23,6 @@ class FeedbacksController < ApplicationController
   def new
     @feedback = Feedback.new
     @users = User.where(id: session[:user_id])
-
   end
 
   # GET /feedbacks/1/edit
@@ -71,6 +77,26 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.require(:feedback).permit(:user_id, :email, :content)
+      params.require(:feedback).permit(:user_id, :email, :content, :term)
     end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+    
+    def check_user
+      if user
+        flash[:danger] = "Chỉ có người dùng mới có thể sử dụng chức năng này, vui lòng dăng nhập tài khoản người dùng"
+      end
+    end
+
+    def user
+      redirect_to(root_url) if current_user.admin?
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end 
 end

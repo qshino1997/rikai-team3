@@ -1,9 +1,14 @@
+<%= render 'users/menuuser' %>
 <div class='container'>
 <p id="notice"><%= notice %></p>
 
-<h1>Số sách chưa trả</h1>
+<h3 class="w3-center">Danh sách người dùng chưa trả</h1>
+<%= form_tag(chuatra_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', hoten: nil %>
+<% end %>
 
-<table>
+<table class="tablest" style="margin-top:20px "> 
   <thead>
     <tr>
     <th>STT </th>
@@ -16,7 +21,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody >
   <% i = 0 %>
     <% @histories.each do |history| %>
         <% @borrows.each do |borrow| %>
@@ -80,6 +85,6 @@
     </script>
   </tbody>
 </table>
-<%= will_paginate%>
+
 
 </div>

@@ -1,16 +1,26 @@
 class IndentifiesController < ApplicationController
   before_action :set_indentify, only: [:show, :edit,:show_catogary, :update, :destroy]
-
+  before_action :check_admin, only: [:index, :edit, :update, :create, :destroy, :new]
+  before_action :check_user, only: [:index_user] 
+  before_action :logged_in_user, only: [:index_user, :update, :show, :edit, :destroy, :index]
+  
   # GET /indentifies
   # GET /indentifies.json
   def index
-    @indentifies =Indentify.joins(:book).select("indentifies.*, books.*,indentifies.id").paginate(:per_page => 5, :page => params[:page])
+    @borrows = Borrow.joins(:indentify, :book).where(user_id: current_user,mode:0).select("indentifies.*,borrows.*,books.*,borrows.mode,borrows.mode1",).paginate(:per_page => 2, :page => params[:page])
+    @indentifies = if params[:timkiem]
+      @indentifies =Indentify.joins(:book).where('tieude LIKE ?', "%#{params[:timkiem]}%").select("indentifies.*, books.*,indentifies.id, books.tieude").paginate(:per_page => 12, :page => params[:page])
+    else
+      @indentifies =Indentify.joins(:book).select("indentifies.*, books.*,indentifies.id").paginate(:per_page => 12, :page => params[:page])
+    end
   end
 
   def index_user
      @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 12, :page => params[:page])
     @catogaries = Catogary.all
+    @borrows = Borrow.joins(:indentify).select("indentifies.*,borrows.*,indentifies.id, borrows.indentify_id, borrows.mode1")
   end
+
   def show_catogary
      @indentify_catogaries =Indentify.joins(:book,:catogary).where(catogary_id:  3 ).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 2, :page => params[:page])
      
@@ -90,10 +100,36 @@ class IndentifiesController < ApplicationController
     end
     def set_catogary
       @catogary_id = Indentify.find(params[:catogary_id])
-
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def indentify_params
-      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id)
+      params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id, :term)
+    end 
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end  
+
+    def check_user
+      if user
+        flash[:danger] = "Chỉ có người dùng mới có thể sử dụng chức năng này, vui lòng dăng nhập tài khoản người dùng"
+      end
+    end
+
+    def user
+      redirect_to(root_url) if current_user.admin?
+    end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Vui lòng đăng nhập để sử dụng chức năng này"
+        redirect_to login_url
+      end
     end
 end

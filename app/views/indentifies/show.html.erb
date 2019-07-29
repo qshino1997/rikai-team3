@@ -11,7 +11,9 @@
       <div>Tác giả : <%= indentify.tacgia %></div>
       <div>Năm xuất bản : <%= indentify.namxuatbang %></div>
       <div>Loại : <%= indentify.tenloai %></div>
+      <% unless current_user.admin %>
       <div><button class="muon" id="button_muon" data-book-id="<%= indentify.book_id%>" value = "<%= indentify.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
+      <% end %>
      <% end %>
   <% end %>
   </filedset>

@@ -1,6 +1,6 @@
 class CatogariesController < ApplicationController
   before_action :set_catogary, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_admin, only: [:new] 
   # GET /catogaries
   # GET /catogaries.json
   def index
@@ -75,4 +75,14 @@ class CatogariesController < ApplicationController
     def catogary_params
       params.require(:catogary).permit(:tenloai)
     end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end  
 end

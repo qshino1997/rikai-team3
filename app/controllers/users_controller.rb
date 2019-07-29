@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :logged_in_user, only: [:edit, :update, :show, :adminedit, :quantri]
+  before_action :logged_in_user, only: [:edit, :update, :show, :adminedit]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :check_admin, only: [:admin_edit, :quantri, :index] 
-  
+  before_action :check_admin, only: [:admin_edit, :destroy, :index, :create] 
+  before_action :check_user, only: [:show, :edit]
+
   def index
+    @users = if params[:timkiem]
+    User.where('hoten LIKE ?', "%#{params[:timkiem]}%")
+    else
     @users = User.all.paginate(:per_page => 2, :page => params[:page])
+    end
   end
 
   def show
@@ -50,9 +55,6 @@ class UsersController < ApplicationController
 
   def admin_edit
   end   
-  
-  def quantri
-  end
 
   private
     def set_user
@@ -60,7 +62,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:id, :email, :password ,:masv , :lop , :hoten , :sdt , :thuongtru , :namsinh_at,:admin )
+      params.require(:user).permit(:id, :email, :password ,:masv , :lop , :hoten , :sdt , :thuongtru , :namsinh_at,:admin, :term )
     end
 
     def logged_in_user
@@ -84,6 +86,16 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end  
+
+    def check_user
+      if user
+        flash[:danger] = "Chỉ có người dùng mới có thể sử dụng chức năng này, vui lòng dăng nhập tài khoản người dùng"
+      end
+    end
+
+    def user
+      redirect_to(root_url) if current_user.admin?
+    end
   end
 
   

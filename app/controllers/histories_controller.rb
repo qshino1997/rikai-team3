@@ -1,16 +1,27 @@
 class HistoriesController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_history, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_admin, only: [:index, :index_history , :destroy]
+  before_action :check_user, only: [:index_history_user]  
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.joins(:book,:indentify,:user).where(mode: 0).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
-    @borrows = Borrow.all
+    @borrows = Borrow.all 
+    @histories = if params[:timkiem]
+      @histories =  History.joins(:book,:indentify,:user).where('hoten LIKE ?', "%#{params[:timkiem]}%").select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id, users.hoten, users.masv").paginate(:per_page => 2, :page => params[:page]) 
+    else
+      @histories =  History.joins(:book,:indentify,:user).where(mode: 0).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id, users.hoten").paginate(:per_page => 2, :page => params[:page])
+    end
   end
+
   def index_history
-    @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
+    @histories = if params[:timkiem]
+      @histories = History.joins(:book,:indentify,:user).where('hoten LIKE ?', "%#{params[:timkiem]}%").select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
+    else
+      @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
+    end
   end
+
   def index_history_user
     @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
   end
@@ -77,6 +88,27 @@ class HistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_params
-      params.require(:history).permit(:user_id, :indentify_id, :book_id, :mode)
+      params.require(:history).permit(:user_id, :indentify_id, :book_id, :mode , :hoten, :term)
     end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end 
+    
+    def check_user
+      if user
+        flash[:danger] = "Tài khoản admin không thể  mượn, vui lòng đăng nhập tài khỏan người dùng để mượn sách"
+      end
+    end
+
+    def user
+      redirect_to(root_url) if current_user.admin?
+    end
+    
 end

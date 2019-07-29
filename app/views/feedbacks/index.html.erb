@@ -1,9 +1,15 @@
+<%= render 'users/menuuser' %>
 <div class='container'>
 <p id="notice"><%= notice %></p>
 
-<h1>Các thư phản hồi</h1>
+<h3 class="w3-center">Danh sách thư phản hồi người dùng</h1>
 
-<table>
+<%= form_tag(thongtinsach_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', hoten: nil %>
+<% end %>
+
+<table class="tablest" style="margin-top:20px ">
   <thead>
     <tr>
     <th>STT</th>

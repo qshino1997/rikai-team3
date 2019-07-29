@@ -1,3 +1,4 @@
+<%= render 'users/menusach' %>
 <div class="all">
 <fieldset class="col-sm-2">
 <legend>Thể loại sách</legend>
@@ -21,8 +22,10 @@
         
         <div>Loại : <%= indentify.tenloai %></div>
         </div>
+        <% unless current_user.admin %>
         <div><button class="muon" data-book-id="<%= indentify.book_id%>" value = "<%= indentify.id%>"   data-user-id="<%= session[:user_id]%>">Mượn</button></div>
-    </div>
+        <% end %>
+        </div>
     <% end %>
     <div class="phantrang">
     <%= will_paginate%>

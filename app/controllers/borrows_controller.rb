@@ -1,7 +1,8 @@
 class BorrowsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_borrow, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_admin, only: [:active_borrow, :destroy]
+  before_action :current_borrow,   only: [:edit, :update] 
   # GET /borrows
   # GET /borrows.json
   def index
@@ -9,7 +10,7 @@ class BorrowsController < ApplicationController
     @borrows = Borrow.joins(:indentify, :book).where(user_id: current_user,mode:0).select("indentifies.*,borrows.*,books.*,borrows.mode",).paginate(:per_page => 2, :page => params[:page])
   end
   def active_borrow
-    @borrows = Borrow.joins(:indentify, :book,:user).where(mode:0).select("indentifies.*,borrows.*,books.*,borrows.mode,users.*,borrows.id",).paginate(:per_page => 2, :page => params[:page])
+    @borrows = Borrow.joins(:indentify, :book,:user).where(mode:0).select("indentifies.*,borrows.*,books.*,borrows.mode,users.*,borrows.id",).paginate(:per_page => 12, :page => params[:page])
     
   end
   def sachchuatra
@@ -84,4 +85,14 @@ class BorrowsController < ApplicationController
     def borrow_params
       params.require(:borrow).permit(:user_id, :soluongmuon, :indentify_id,:book_id, :mode, :mode1)
     end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end  
 end

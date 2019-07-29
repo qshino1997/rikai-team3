@@ -1,23 +1,24 @@
+<%= render 'users/menuuser' %>
 <div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>DANH SÁCH ĐĂNG KÝ MƯỢN</h1>
+<h3 class="w3-center">Danh sách người dùng đăng ký mượn</h3>
 
-<table>
+<table class="tablest">
   <thead>
     <tr>
-      <th>STT</th>
-      <th>Mã sách</th>
-      <th>Tên sách</th>
-      <th>Họ và tên</th>
-      <th>Lớp</th>
-      <th>Ngày mượn</th>
-      <th>Tình trạng</th>
+      <th >STT</th>
+      <th >Mã sách</th>
+      <th >Tên sách</th>
+      <th >Họ và tên</th>
+      <th >Lớp</th>
+      <th >Ngày mượn</th>
+      <th >Tình trạng</th>
      
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="tablest">
   <% i = 0 %>
 
   <% @borrows.each do |borrow| %>

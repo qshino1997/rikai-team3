@@ -13,8 +13,10 @@
 </div>
 <div>
 <%= form.label :remember_me, class: "checkbox inline" do %>
-  <%= form.check_box :remember_me %>
-  <span>Ghi nhớ đăng nhập</span>
+    <%= form.check_box :remember_me %>
+     <div>
+     <span style="margin-right:-20px">Ghi nhớ đăng nhập</span>
+      </div>
 <% end %>
 </div>
       <%= form.submit "Đăng nhập", class: "btn btn-primary"%>

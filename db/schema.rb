@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_083951) do
     t.datetime "updated_at", null: false
     t.integer "book_id"
     t.integer "mode", limit: 1, default: 0
-    t.integer "mode1", limit: 1, default: 0
+    t.integer "mode1", limit: 1
   end
 
   create_table "catogaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_083951) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "histories", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "indentify_id"
     t.integer "book_id"

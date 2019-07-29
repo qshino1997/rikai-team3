@@ -215,7 +215,7 @@ html {
     .li {
         color: #f1f1f1;
         display: inline-table;
-        width: 160px;
+        width: 150px;
         height: 40px;
         line-height: 40px;
         position: relative;
@@ -247,12 +247,12 @@ table {
 
 thead {
     background: yellow;
-    color: red;
+    color: black;
 }
 
 th {
     text-align: center;
-    font-size: 23px;
+    font-size: 20px;
 }
 
 td {
@@ -391,6 +391,7 @@ filedset {
 #map {
     width: 36%;
     float: left;
+   
 }
 
 #muc {
@@ -407,4 +408,27 @@ filedset {
 .li_footer {
     font-size: 23px;
     padding: 1%;
+}
+
+#menu1 ul{
+    list-style-type: none ;
+    background: #1f5688;
+    text-align: center;
+    li{
+      color: #f1f1f1;
+      display: inline-table;
+      width: 160px;
+      height: 40px;
+      line-height: 40px;
+      position: relative; 
+      a{
+        color: #f1f1f1;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        :hover{
+          color : #333;
+        }
+      }
+    }
 }

@@ -1,9 +1,20 @@
+<div id="menu1">
+<ul> 
+<li><a><%= link_to 'Thêm sách mới' , loaimoi_path %></a>
+</li>
+</ul>
+</div>
 <div class ="container">
 <p id="notice"><%= notice %></p>
 
-<h1>THỐNG KÊ CÁC SÁCH</h1>
+<h3 class="w3-center">Toàn bộ loại sách</h1>
 
-<table>
+<%= form_tag(thongtinsach_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', tieude: nil %>
+<% end %>
+
+<table class="tablest" style="margin-top:20px "> 
   <thead>
     <tr>
       <th>STT</th>
@@ -33,6 +44,4 @@
 </table>
 <%= will_paginate %>
 <br>
-
-# <%= link_to 'New Indentify', new_indentify_path %>
 </div>

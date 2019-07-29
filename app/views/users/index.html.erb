@@ -1,9 +1,15 @@
+<%= render 'users/menuuser' %>
 <div class="container">
 <p id="notice"><%= notice %></p>
 
 <h3 class="w3-center">Danh sách người đọc đã đăng ký</h3>
 
-<table class="tablest">
+<%= form_tag(users_path, method: :get) do %>
+<%= text_field_tag :timkiem , params[:timkiem] %>
+<%= submit_tag 'Tìm kiếm', hoten: nil %>
+<% end %>
+
+<table class="tablest" style="margin-top:20px ">
   <thead>
     <tr>
       <th >STT</th>
@@ -37,7 +43,7 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate %>
+
 <br>
 
 <%= link_to 'Thêm người dùng', new_user_path %>

@@ -9,30 +9,21 @@
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
-     <div> <%= link_to "Trang chủ", root_url , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%>
+     <div> <%= link_to "Trang chủ", root_url , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px; "%>
     
      <% if logged_in? %>
      <% if current_user.admin %> 
-
-<div><%= link_to 'Xem tất cả người dùng' , users_path, class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Danh sách chờ xác nhận' , activeborrow_path, class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Danh sách chưa trả', chuatra_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Thêm sách mới' , loaimoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Thông tin về sách' , thongtinsach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Lịch sử ' , lichsu_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em "%></div>
-<div><%= link_to 'Thư phản hồi ' , thuphanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
+<div><%= link_to 'Quản lý thông tin người dùng' , users_path, class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px; " %></div>
+<div><%= link_to 'Quản lý thông tin sách' , thongtinsach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px; " %></div>
 
 <% end %>
-<% unless current_user.admin %> 
-<div><%= link_to 'Tất cả các sách' , sach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Sách đăng ký mượn' , sachmuon_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Sách đang mượn' , sachchuatra_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Lịch sử' , lichsuuser_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
-<div><%= link_to 'Xem thông tin tài khoản' , current_user,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div></li>
-<div><%= link_to 'Phản hồi' , phanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1.2em " %></div>
+<% unless current_user.admin %>
+<div><%= link_to 'Thông tin sách' , sach_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1em; padding: 8px 8px; " %></div>
+<div><%= link_to 'Thông tin tài khoản' , current_user,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1em; padding: 8px 8px; " %></div></li>
+<div><%= link_to 'Phản hồi' , phanhoi_path,class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold; font-family: Times New Roman; font-size:1em; padding: 8px 8px; " %></div>
 <% end %>
-    <%= link_to "Đăng xuất", logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.2em" %>            
-     <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.2em; font-family: Times New Roman; font-weight: bold">
+    <%= link_to "Đăng xuất", logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"w3-bar-item w3-button" , style:"color:yellow; float:right; font-weight: bold; font-family: Times New Roman; font-size:1.1em; padding: 8px 8px;" %>            
+     <a class="w3-bar-item w3-button" style="color:yellow;float: right ;font-size: 1.1em; font-family: Times New Roman; font-weight: bold; padding: 8px 8px;">
      Chào 
      <% if current_user.admin %>
         Quản trị viên:   
@@ -42,7 +33,7 @@
         <%= current_user.hoten %>
         </a>
    <% else %>
-        <%= link_to "Đăng nhập", login_path , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold;font-family: Times New Roman; font-size:1.2em"%>
+        <%= link_to "Đăng nhập", login_path , class:"w3-bar-item w3-button" , style:"color:yellow; font-weight: bold;font-family: Times New Roman; font-size:1.1em; padding: 8px 8px;"%>
     <% end %>
     </div>
     </a>

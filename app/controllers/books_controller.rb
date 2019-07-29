@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_admin, only: [:new] 
   # GET /books
   # GET /books.json
   def index
@@ -72,4 +72,14 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:tieude, :tacgia, :namxuatbang, :mota, :gia, :catogary_id, :picture)
     end
+
+    def check_admin
+      if admin_user
+        flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"
+      end 
+    end  
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end  
 end
