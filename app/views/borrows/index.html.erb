@@ -26,9 +26,9 @@
         <td><%= borrow.created_at %></td>
         <% if borrow.mode == 0 %>
         <td><span class="tinhtrang" > Chưa được mượn </button></td>
-        <% else %>
-        <td><span class"tinhtrang" > Được mượn</button></td>
-        
+        <% else if borrow.mode == 1  %>
+        <td><span class"tinhtrang" > Đang mượn</button></td>
+        <% end %>
         <% end %>
       </tr>
     <% end %>

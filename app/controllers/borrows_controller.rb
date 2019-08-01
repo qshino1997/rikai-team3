@@ -2,7 +2,7 @@ class BorrowsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_borrow, only: [:show, :edit, :update, :destroy]
   before_action :check_admin, only: [:active_borrow, :destroy]
-  before_action :current_borrow,   only: [:edit, :update] 
+  
   # GET /borrows
   # GET /borrows.json
   def index

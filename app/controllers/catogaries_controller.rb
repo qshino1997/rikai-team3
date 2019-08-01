@@ -75,7 +75,7 @@ class CatogariesController < ApplicationController
     def catogary_params
       params.require(:catogary).permit(:tenloai)
     end
-
+    
     def check_admin
       if admin_user
         flash[:danger] = "Chỉ có admin mới có thể sử dụng chức năng này"

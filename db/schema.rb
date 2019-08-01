@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_083951) do
     t.integer "catogary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "mode", limit: 1
+    t.integer "mode", limit: 1, default: 0
     t.string "picture"
   end
 
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_083951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "book_id"
-    t.integer "mode", limit: 1, default: 0
+    t.integer "mode", limit: 1
     t.integer "mode1", limit: 1
   end
 

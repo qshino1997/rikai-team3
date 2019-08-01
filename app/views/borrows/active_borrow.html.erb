@@ -37,7 +37,12 @@
         <% end %>
       </tr>
     <% end %>
-    <script>
+    
+  </tbody>
+</table>
+<%= will_paginate %>
+</div>
+<script>
     $(document).ready(function() {
     $("#active").click(function() {
       indentify_id = $(this).val();
@@ -70,19 +75,16 @@
           data: mydata,
           success: function(repsonse) {
               alert("Đã cho phép mượn");
-              location.reload();
               // $("#tam").html(repsonse);
           },
-          error: function(repsonse) {
-              console.log(response);
-          }
+          
       })
       $.ajax({
           type: 'POST',
           url: "/histories",
           data: mydata1,
           success: function(repsonse) {
-              location.reload();
+
               // $("#tam").html(repsonse);
           },
           error: function(repsonse) {
@@ -110,7 +112,7 @@
       $.ajax({
           type: 'PATCH',
           url: "/borrows/" + id,
-          data: mydata,
+         
           success: function(repsonse) {
               location.reload();
               // $("#tam").html(repsonse);
@@ -120,7 +122,3 @@
   });
   });
     </script>
-  </tbody>
-</table>
-<%= will_paginate %>
-</div>

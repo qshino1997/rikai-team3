@@ -3,7 +3,6 @@ class IndentifiesController < ApplicationController
   before_action :check_admin, only: [:index, :edit, :update, :create, :destroy, :new]
   before_action :check_user, only: [:index_user] 
   before_action :logged_in_user, only: [:index_user, :update, :show, :edit, :destroy, :index]
-  
   # GET /indentifies
   # GET /indentifies.json
   def index
@@ -18,11 +17,9 @@ class IndentifiesController < ApplicationController
   def index_user
      @indentifies =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 12, :page => params[:page])
     @catogaries = Catogary.all
-    @borrows = Borrow.joins(:indentify).select("indentifies.*,borrows.*,indentifies.id, borrows.indentify_id, borrows.mode1")
   end
-
   def show_catogary
-     @indentify_catogaries =Indentify.joins(:book,:catogary).where(catogary_id:  3 ).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 2, :page => params[:page])
+     @indentify_catogaries =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai").paginate(:per_page => 2, :page => params[:page])
      
     end
 
@@ -100,11 +97,12 @@ class IndentifiesController < ApplicationController
     end
     def set_catogary
       @catogary_id = Indentify.find(params[:catogary_id])
+
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def indentify_params
       params.require(:indentify).permit(:indentify_code, :book_id, :catogary_id, :term)
-    end 
+    end
 
     def check_admin
       if admin_user

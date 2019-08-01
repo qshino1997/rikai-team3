@@ -6,14 +6,14 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks.json
   def index
     @feedbacks = if params[:timkiem]
-      @feedbacks = Feedback.joins(:user).where('hoten LIKE ?', "%#{params[:timkiem]}%").select("feedbacks.*,users.*")
+    @feedbacks = Feedback.joins(:user).where('hoten LIKE ?', "%#{params[:timkiem]}%").select("feedbacks.*,users.*")
     else
-      @feedbacks = Feedback.joins(:user).select("feedbacks.*,users.*")
+
+    @feedbacks = Feedback.joins(:user).select("feedbacks.*,users.*")
+    
     end
   end
 
-  def anfb  
-  end
   # GET /feedbacks/1
   # GET /feedbacks/1.json
   def show
@@ -23,6 +23,7 @@ class FeedbacksController < ApplicationController
   def new
     @feedback = Feedback.new
     @users = User.where(id: session[:user_id])
+
   end
 
   # GET /feedbacks/1/edit

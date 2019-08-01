@@ -17,8 +17,6 @@ default: &default
   password: minminmin
   database: QLTV
   socket: /var/run/mysqld/mysqld.sock
-  
-
 development:
   <<: *default
   database: QLTV
@@ -52,5 +50,5 @@ test:
 production:
   <<: *default
   database: QLTV
-  username: quang
-  password: <%= ENV['QLTV_DATABASE_PASSWORD'] %>
+  username: QLTV
+  password: <%= ENV['QLTV1_DATABASE_PASSWORD'] %>

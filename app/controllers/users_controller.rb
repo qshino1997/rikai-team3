@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :logged_in_user, only: [:edit, :update, :show, :adminedit]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :check_admin, only: [:admin_edit, :destroy, :index, :create] 
+  before_action :check_admin, only: [:admin_edit, :destroy, :index] 
   before_action :check_user, only: [:show, :edit]
 
   def index
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:id, :email, :password ,:masv , :lop , :hoten , :sdt , :thuongtru , :namsinh_at,:admin, :term )
+      params.require(:user).permit(:id, :email, :password ,:masv , :lop , :hoten , :sdt , :thuongtru , :namsinh_at, :admin, :term)
     end
 
     def logged_in_user

@@ -15,13 +15,8 @@ class HistoriesController < ApplicationController
   end
 
   def index_history
-    @histories = if params[:timkiem]
-      @histories = History.joins(:book,:indentify,:user).where('hoten LIKE ?', "%#{params[:timkiem]}%").select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
-    else
-      @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
-    end
+    @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
   end
-
   def index_history_user
     @histories = History.joins(:book,:indentify,:user).where(mode: 1).select("histories.*,books.*,histories.mode,indentifies.*,users.*,histories.id").paginate(:per_page => 2, :page => params[:page])
   end
@@ -88,7 +83,7 @@ class HistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_params
-      params.require(:history).permit(:user_id, :indentify_id, :book_id, :mode , :hoten, :term)
+      params.require(:history).permit(:user_id, :indentify_id, :book_id, :mode, :term)
     end
 
     def check_admin
@@ -110,5 +105,4 @@ class HistoriesController < ApplicationController
     def user
       redirect_to(root_url) if current_user.admin?
     end
-    
 end
