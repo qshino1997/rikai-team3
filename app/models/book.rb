@@ -1,14 +1,15 @@
 class Book < ApplicationRecord
+    mount_uploader :picture, AttachmentUploader
     has_many :catogaries
     has_many :indentities
-    mount_uploader :picture, PictureUploader
-    validate  :picture_size
 
-    private
-    def picture_size
-      if picture.size > 5.megabytes
-        errors.add(:picture, "should be less than 5MB")
-      end
-    end
+    has_many :borrows
+    has_many :histories
+    validates :mota, presence: { message: " không được để  trống" } 
+    validates :tieude, presence: { message: " không được để  trống" } 
+    validates :tacgia, presence: { message: " không được để  trống" } 
+    validates :namxuatbang, presence: { message: " không được để  trống" } 
+    validates :gia, presence: { message: " không được để  trống" } 
+
 
 end

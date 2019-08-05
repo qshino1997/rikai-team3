@@ -23,7 +23,7 @@
     <%= form.text_field :thuongtru %>
     </div>
 
-    <div class="field">
+    <div class="field ngaysinh">
     <%= form.label :"namsinh_at", "Năm sinh" %>
     <%= form.date_select :namsinh_at %>
     </div>
@@ -32,6 +32,9 @@
     <%= form.submit :"Sửa" %>
   </div> 
 <% end %>
+<h1>Editing User</h1>
+
+<%= render 'form', user: @user %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

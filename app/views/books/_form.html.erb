@@ -21,7 +21,7 @@
     <%= form.text_field :tacgia %>
   </div>
 
-  <div class="field">
+  <div class="field xuatban">
     <%= form.label :namxuatbang ,"Năm xuất bản "%>
     <%= form.date_select :namxuatbang %>
   </div>
@@ -40,14 +40,14 @@
   <%= form.collection_select :catogary_id, @catogaries, :id, :tenloai %>
 </div>
 
-  <div class="field">
-    <%= form.label :picture, "Thêm hình ảnh" %>
-    <%= form.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-  </div>
+<div class="field">
+<%= form.label :picture %>
+<%= form.file_field :picture, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+</div>
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit value:"thêm sách mới "%>
   </div>
 <% end %>
 

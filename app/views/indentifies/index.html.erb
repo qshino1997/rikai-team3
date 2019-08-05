@@ -6,6 +6,7 @@
 <table class="tablest">
   <thead>
     <tr>
+      <th>STT</th>
       <th>Mã sách</th>
       <th>Tên sách</th>
       <th>Tác giả</th>
@@ -15,19 +16,19 @@
   </thead>
 
   <tbody>
+  <% i = 0 %>
     <% @indentifies.each do |indentify| %>
       <tr>
+      <td><%= i+=1 %> </td>
         <td><%= indentify.indentify_code %></td>
         <td><%= indentify.tieude %></td>
         <td><%= indentify.tacgia %></td>
         <td><%= indentify.namxuatbang %></td>
-        <% unless current_user.admin %>
-        <td ><button><%= link_to 'Xem thông tin sách', indentify %></button></td>
-        <% end %>
-        <% if current_user.admin %>
-        <td><%= link_to 'Edit', edit_indentify_path(indentify) %></td>
-        <td><%= link_to 'Destroy', indentify, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>       
+
+        <td><%= link_to 'Thông tin', indentify %></td>
+        <td><%= link_to 'Sửa', edit_indentify_path(indentify) %></td>
+        <td><%= link_to 'Xóa', indentify, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
       <% end %>
   </tbody>

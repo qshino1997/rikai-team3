@@ -1,15 +1,28 @@
 class BorrowsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_borrow, only: [:show, :edit, :update, :destroy]
 
   # GET /borrows
   # GET /borrows.json
   def index
-    @borrows = Borrow.all
+    current_user = Borrow.where(user_id: session[:user_id]).distinct.pluck(:user_id)
+    @borrows = Borrow.joins(:indentify, :book).where(user_id: current_user,mode:0).select("indentifies.*,borrows.*,books.*,borrows.mode",).paginate(:per_page => 2, :page => params[:page])
+  end
+  def active_borrow
+    @borrows = Borrow.joins(:indentify, :book,:user).where(mode:0).select("indentifies.*,borrows.*,books.*,borrows.mode,users.*,borrows.id",).paginate(:per_page => 2, :page => params[:page])
+    
+  end
+  def sachchuatra
+    current_user = Borrow.where(user_id: session[:user_id]).distinct.pluck(:user_id)
+    @borrows = Borrow.joins(:indentify, :book,:user).where(mode:1,user_id: current_user).select("indentifies.*,borrows.*,books.*,borrows.mode,users.*,borrows.id",).paginate(:per_page => 2, :page => params[:page])
+    
   end
 
   # GET /borrows/1
   # GET /borrows/1.json
   def show
+    @borrows = Borrow.joins(:indentify, :book).where(user_id: current_user).select("borrows.*,indentifies.*,books.*,borrows.id",)
+
   end
 
   # GET /borrows/new
@@ -28,13 +41,13 @@ class BorrowsController < ApplicationController
 
     respond_to do |format|
       if @borrow.save
-        format.html { redirect_to @borrow, notice: 'Borrow was successfully created.' }
-        format.json { render :show, status: :created, location: @borrow }
-        format.js
+        # format.html { redirect_to @borrow, notice: 'Borrow was successfully created.' }
+        # format.json { render :show, status: :created, location: @borrow }
+        format.js{}
       else
-        format.html { render :new }
-        format.json { render json: @borrow.errors, status: :unprocessable_entity }
-        format.js
+        # format.html { render :new }
+        # format.json { render json: @borrow.errors, status: :unprocessable_entity }
+        format.js{render json: @borrow.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -44,11 +57,10 @@ class BorrowsController < ApplicationController
   def update
     respond_to do |format|
       if @borrow.update(borrow_params)
-        format.html { redirect_to @borrow, notice: 'Borrow was successfully updated.' }
-        format.json { render :show, status: :ok, location: @borrow }
+        format.js{}
+      
       else
-        format.html { render :edit }
-        format.json { render json: @borrow.errors, status: :unprocessable_entity }
+        format.js{}
       end
     end
   end
@@ -58,8 +70,7 @@ class BorrowsController < ApplicationController
   def destroy
     @borrow.destroy
     respond_to do |format|
-      format.html { redirect_to borrows_url, notice: 'Borrow was successfully destroyed.' }
-      format.json { head :no_content }
+      redirect_to chuatra_path
     end
   end
 
@@ -71,6 +82,6 @@ class BorrowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def borrow_params
-      params.require(:borrow).permit(:user_id, :soluongmuon, :indentify_id)
+      params.require(:borrow).permit(:user_id, :soluongmuon, :indentify_id,:book_id, :mode, :mode1)
     end
 end

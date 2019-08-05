@@ -10,11 +10,15 @@ class CatogariesController < ApplicationController
   # GET /catogaries/1
   # GET /catogaries/1.json
   def show
+    @indentify_catogaries =Indentify.joins(:book,:catogary).select("indentifies.*, books.*,indentifies.id,catogaries.tenloai")
+    @catogaries = Catogary.all
+
   end
 
   # GET /catogaries/new
   def new
     @catogary = Catogary.new
+
     
   end
 
@@ -29,8 +33,7 @@ class CatogariesController < ApplicationController
 
     respond_to do |format|
       if @catogary.save
-        format.html { redirect_to @catogary, notice: 'Catogary was successfully created.' }
-        format.json { render :show, status: :created, location: @catogary }
+        format.html {redirect_to themmoi_path}
       else
         format.html { render :new }
         format.json { render json: @catogary.errors, status: :unprocessable_entity }

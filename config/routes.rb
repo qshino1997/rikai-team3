@@ -1,20 +1,37 @@
 Rails.application.routes.draw do
+  resources :feedbacks
+  get '/phanhoi', to: 'feedbacks#new'
+  get '/thuphanhoi', to: 'feedbacks#index'
+
+  resources :histories
+  get '/chuatra', to: 'histories#index'
+  get '/lichsu', to: 'histories#index_history'
+  get '/lichsuuser', to: 'histories#index_history_user'
   resources :indentifies
   get '/thongtinsach', to: 'indentifies#index'
-  get '/book/:id', to: 'indentifies#show' 
-
+  get  '/nhandangmoi',  to: 'indentifies#new'
+  get  '/show',  to: 'indentifies#show'
+  get 'indentifies/show'
+  get  '/show_catogary',  to: 'indentifies#show_catogary'
+  get  '/sach',  to: 'indentifies#index_user'
+  post  '/sach',  to: 'borrows#create'
   resources :books
   get  '/themmoi',  to: 'books#new'
-  get  '/books',  to: 'books#index' 
-  get 'books/:id/edit', to:'books#edit'
+  
+
   resources :borrow_details
-  get  '/nhandangmoi',  to: 'indentifies#new'
-  get  '/sach',  to: 'indentifies#index_user'
+  get  '/nguoimuonsach',  to: 'borrow_details#index'
 
   resources :borrows
   get '/muon', to: 'borrows#new'
+  get '/create', to: 'borrows#create'
+  get '/sachmuon', to: 'borrows#index'
+  get '/sachchuatra', to: 'borrows#sachchuatra'
+  get '/activeborrow', to: 'borrows#active_borrow'
   resources :catogaries
   get  '/loaimoi',  to: 'catogaries#new'
+  get 'catogaries/show'
+
   get 'sessions/new'
   get 'static_pages/home'
   get 'static_pages/help'
@@ -27,4 +44,6 @@ Rails.application.routes.draw do
   resources :users
   root 'static_pages#home'
   get  '/users/:id/admin_edit',  to:'users#admin_edit', as: :admin_edit_user
+  resources :users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
